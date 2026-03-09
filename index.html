@@ -543,32 +543,15 @@
     transform: translateY(-30%) rotate(135deg);
     opacity: 0.7;
   }
+  details > summary:hover::after {
+    opacity: 1;
+  }
   details > *:not(summary) {
     animation: slideDown 0.35s ease;
   }
   @keyframes slideDown {
     from { opacity: 0; transform: translateY(-8px); }
     to   { opacity: 1; transform: translateY(0); }
-  }
-  summary { list-style: none; }
-  summary::-webkit-details-marker { display: none; }
-  summary::before {
-    content: "▶";
-    display: inline-block;
-    margin-right: 0.5em;
-    color: #ffb347;
-    text-shadow:
-      0 0 6px #ffb34799,
-      0 0 12px #ff8c0066,
-      0 0 24px #ff6a0044;
-    transition: text-shadow 0.3s ease;
-  }
-  details[open] summary::before {
-    content: "▼";
-    text-shadow:
-      0 0 8px #ffb347cc,
-      0 0 20px #ff8c0099,
-      0 0 40px #ff6a0066;
   }
 
 </style>
