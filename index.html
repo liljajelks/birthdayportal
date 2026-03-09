@@ -515,6 +515,44 @@
     margin-top: 0.8rem;
     text-align: right;
   }
+  
+   /* ─── COLLAPSIBLE SECTIONS ─── */
+  details > summary {
+    list-style: none;
+    cursor: pointer;
+    position: relative;
+    padding-right: 2.5rem;
+  }
+  details > summary::-webkit-details-marker {
+    display: none;
+  }
+  details > summary::after {
+    content: '';
+    position: absolute;
+    right: 0.5rem;
+    top: 50%;
+    width: 10px;
+    height: 10px;
+    border-left: 2px solid var(--blush);
+    border-bottom: 2px solid var(--blush);
+    transform: translateY(-70%) rotate(-45deg);
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    opacity: 0.5;
+  }
+  details[open] > summary::after {
+    transform: translateY(-30%) rotate(135deg);
+    opacity: 0.7;
+  }
+  details > summary:hover::after {
+    opacity: 1;
+  }
+  details > *:not(summary) {
+    animation: slideDown 0.35s ease;
+  }
+  @keyframes slideDown {
+    from { opacity: 0; transform: translateY(-8px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
 
 </style>
 </head>
