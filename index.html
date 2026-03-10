@@ -817,6 +817,24 @@ details[open] > summary::before {
 </footer>
 
 <script>
+  // ── ENTRY SCREEN ──
+const guests = ['aimee','cole','abby','vivi','rory','basile','lilja'];
+const nameInput = document.getElementById('name-input');
+const entryScreen = document.getElementById('entry-screen');
+const entryError = document.getElementById('entry-error');
+
+nameInput.addEventListener('keydown', (e) => {
+  if (e.key === 'Enter') {
+    const val = nameInput.value.trim().toLowerCase();
+    if (guests.includes(val)) {
+      entryScreen.style.opacity = '0';
+      setTimeout(() => entryScreen.remove(), 1500);
+    } else {
+      entryError.style.opacity = '1';
+      nameInput.value = '';
+      setTimeout(() => entryError.style.opacity = '0', 2000);
+    }
+  }
   // ── STARS ──
   const starsContainer = document.getElementById('stars');
   const starEls = [];
