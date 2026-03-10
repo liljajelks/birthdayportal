@@ -591,6 +591,32 @@ details[open] > summary::before {
 </style>
 </head>
 <body>
+  <div id="entry-screen" style="
+  position: fixed; inset: 0; z-index: 99999;
+  background: var(--deep);
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  text-align: center; padding: 2rem;
+  transition: opacity 1.5s ease;
+">
+  <p style="font-family:'Space Mono',monospace;font-size:0.65rem;letter-spacing:0.3em;color:var(--tide);text-transform:uppercase;margin-bottom:2rem;">you are invited</p>
+  <h1 style="font-family:'Playfair Display',serif;font-size:clamp(2rem,6vw,4rem);color:var(--sand);font-weight:400;margin-bottom:0.5rem;">Who are you,</h1>
+  <h1 style="font-family:'Playfair Display',serif;font-size:clamp(2rem,6vw,4rem);color:var(--blush);font-style:italic;font-weight:400;margin-bottom:3rem;">wanderer?</h1>
+  <input id="name-input" type="text" placeholder="your name..." style="
+    background: transparent;
+    border: none; border-bottom: 1px solid rgba(127,168,184,0.4);
+    color: var(--sand);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem;
+    text-align: center;
+    padding: 0.5rem 1rem;
+    outline: none;
+    width: 280px;
+    letter-spacing: 0.05em;
+  ">
+  <p id="entry-hint" style="font-family:'Space Mono',monospace;font-size:0.55rem;letter-spacing:0.2em;color:var(--tide);margin-top:1rem;opacity:0.6;">press enter</p>
+  <p id="entry-error" style="font-family:'Space Mono',monospace;font-size:0.55rem;letter-spacing:0.2em;color:var(--poppy);margin-top:1rem;opacity:0;transition:opacity 0.3s;">hmm, i don't recognize you...</p>
+</div>
 <div class="orb" style="width:500px;height:500px;background:#c4b8d0;top:-100px;left:-100px;--dur:25s;--tx:60px;--ty:50px;"></div>
 <div class="orb" style="width:400px;height:400px;background:#f5f0ee;top:40%;right:-80px;--dur:18s;--tx:-50px;--ty:40px;"></div>
 <div class="orb" style="width:350px;height:350px;background:#f0edf4;bottom:10%;left:30%;--dur:22s;--tx:30px;--ty:-60px;"></div>
