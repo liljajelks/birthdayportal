@@ -146,6 +146,7 @@
     display: inline-block;
     padding: 0.7rem 2rem;
     text-transform: uppercase;
+    border-radius: 12px;
   }
 
   .scroll-hint {
@@ -275,6 +276,35 @@
     .location-grid { grid-template-columns: 1fr; }
   }
 
+  @media (max-width: 480px) {
+    section { padding: 3.5rem 1.25rem; }
+
+    .schedule-section { padding: 3.5rem 1.25rem; }
+
+    .hero-content { padding: 1.25rem; }
+
+    .wish-examples {
+      padding-left: 1rem;
+      font-size: 1.1rem;
+    }
+
+    details > summary::before {
+      font-size: 0.32rem;
+      top: calc(50% + 18px);
+    }
+
+    details > summary::after {
+      width: 22px;
+      height: 22px;
+    }
+
+    #name-input { width: 220px !important; font-size: 1.2rem !important; }
+
+    .days-grid { gap: 1.2rem; }
+
+    .day-card { padding: 1.8rem 1.25rem; }
+  }
+
   .location-detail {
     border-top: 1px solid var(--fog);
     padding-top: 1.2rem;
@@ -298,9 +328,12 @@
 
   /* ─── SCHEDULE ─── */
   .schedule-section {
-    background: linear-gradient(180deg, var(--sand) 0%, #ede8e0 100%);
+    background: linear-gradient(160deg, #fff8f0 0%, #f5eeff 50%, #eef6ff 100%);
     padding: 6rem 2rem;
   }
+
+  .schedule-section .section-label { color: var(--poppy); }
+  .schedule-section .section-title { color: var(--ocean); }
 
   .schedule-inner { max-width: 900px; margin: 0 auto; }
 
@@ -312,25 +345,31 @@
   }
 
   .day-card {
-    background: var(--cream);
     padding: 2.5rem 2rem;
     position: relative;
     overflow: hidden;
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-radius: 20px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.06);
   }
 
-  .day-card:hover { transform: translateY(-4px); }
+  .day-card:nth-child(1) { background: rgba(255,255,255,0.7); }
+  .day-card:nth-child(2) { background: rgba(255,255,255,0.7); }
+  .day-card:nth-child(3) { background: rgba(255,255,255,0.7); }
+
+  .day-card:hover { transform: translateY(-5px); box-shadow: 0 10px 36px rgba(0,0,0,0.08); }
 
   .day-card::before {
     content: '';
     position: absolute;
     top: 0; left: 0; right: 0;
     height: 3px;
+    border-radius: 20px 20px 0 0;
   }
 
-  .day-card:nth-child(1)::before { background: linear-gradient(90deg, var(--dusk-blue), var(--twilight)); }
-  .day-card:nth-child(2)::before { background: linear-gradient(90deg, var(--terracotta), var(--poppy)); }
-  .day-card:nth-child(3)::before { background: linear-gradient(90deg, var(--sage), var(--olive)); }
+  .day-card:nth-child(1)::before { background: linear-gradient(90deg, #b8c4d4, #cab2d4); }
+  .day-card:nth-child(2)::before { background: linear-gradient(90deg, var(--blush), var(--poppy)); }
+  .day-card:nth-child(3)::before { background: linear-gradient(90deg, var(--sage), var(--tide)); }
 
   .day-number {
     font-family: 'Playfair Display', serif;
@@ -497,17 +536,19 @@
     to   { opacity: 1; transform: translateY(0); }
   }
 
-  /* pulsing dot under arrow */
+  /* "press me" label under arrow */
   details > summary::before {
-    content: '';
+    content: 'press me';
     position: absolute;
-    right: calc(0.5rem + 12px);
-    top: calc(50% + 24px);
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: var(--lavender);
-    animation: dotPulse 1.8s ease-in-out infinite;
+    right: calc(0.5rem - 4px);
+    top: calc(50% + 22px);
+    font-family: 'Space Mono', monospace;
+    font-size: 0.38rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--lavender);
+    animation: dotPulse 3.5s ease-in-out infinite;
+    white-space: nowrap;
   }
 
   details[open] > summary::before { display: none; }
@@ -588,7 +629,7 @@
     <p class="hero-eyebrow">10-12 friends are invited</p>
     <h1 class="hero-title">Pebble Beach<br><em>Portal</em></h1>
     <p class="hero-subtitle">a weekend to get a little creative together</p>
-    <div class="hero-date">April 10 — 12, 2026</div>
+    <div class="hero-date" id="hero-date">April 10 — 12, 2026</div>
   </div>
 
   <div class="scroll-hint">scroll</div>
@@ -647,7 +688,7 @@
     <div class="location-grid">
       <div class="location-detail fade-up">
         <h4>Sleeping arrangements</h4>
-        <p>Sleeping logistics will be crafty. All of us will find a cozy spot — some beds, most on air mattresses. Sleepover! ... Pillow fight!?.</p>
+        <p>Sleeping logistics will be crafty. All of us will find a cozy spot — some beds, most on air mattresses. Sleepover! ... Pillow fight?!</p>
       </div>
       <div class="location-detail fade-up">
         <h4>Arrival</h4>
@@ -659,7 +700,19 @@
 
 <div class="divider"></div>
 
-<!-- ─── SCHEDULE ─── -->
+<!-- ─── WEATHER ─── -->
+<section class="fade-up">
+  <details id="weather-details">
+    <summary>
+      <p class="section-label">Before you pack</p>
+      <h2 class="section-title">Pebble Beach<br><em>weather forecast</em></h2>
+    </summary>
+    <div id="weather-content" style="margin-top:2rem;">
+      <div id="weather-loading" style="font-family:'Space Mono',monospace;font-size:0.7rem;letter-spacing:0.2em;color:var(--stone);text-transform:uppercase;padding:1rem 0;">fetching the forecast...</div>
+      <div id="weather-grid" style="display:none;"></div>
+    </div>
+  </details>
+</section>
 <div class="schedule-section">
   <div class="schedule-inner">
     <p class="section-label" style="text-align:center">The weekend</p>
@@ -669,7 +722,7 @@
 
       <!-- Day 1 -->
       <div class="day-card fade-up">
-        <div class="day-number">01</div>
+        <div class="day-number">Day 1</div>
         <div class="day-name">Friday · Apr 10</div>
         <ul class="day-events">
           <li class="day-event">
@@ -688,8 +741,8 @@
           <li class="day-event">
             <span class="event-dot"></span>
             <div>
-              <span class="event-text">Games 'n chill 🎲</span>
-              <span class="event-sub">Bring your favorite, or make one up for us!</span>
+              <span class="event-text">Games 'n spa 🎲</span>
+              <span class="event-sub">Bring your favorite game, or make one up for us! Face masks anyone??</span>
             </div>
           </li>
         </ul>
@@ -697,14 +750,14 @@
 
       <!-- Day 2 -->
       <div class="day-card fade-up">
-        <div class="day-number">02</div>
+        <div class="day-number">Day 2</div>
         <div class="day-name">Saturday · Apr 11</div>
         <ul class="day-events">
           <li class="day-event">
             <span class="event-dot"></span>
             <div>
               <span class="event-text">Polar Bear Plunge 🧊</span>
-              <span class="event-sub">Dive in or cheerlead — both are required</span>
+              <span class="event-sub">Dive in or cheerlead — pick your choice</span>
             </div>
           </li>
           <li class="day-event">
@@ -724,7 +777,7 @@
             <span class="event-dot"></span>
             <div>
               <span class="event-text">Beach bonfire 🔥</span>
-              <span class="event-sub">Maybe an effigy situation? TBD.</span>
+              <span class="event-sub">Maybe a burning of an effigy situation? TBD</span>
             </div>
           </li>
           <li class="day-event">
@@ -739,7 +792,7 @@
 
       <!-- Day 3 -->
       <div class="day-card fade-up">
-        <div class="day-number">03</div>
+        <div class="day-number">Day 3</div>
         <div class="day-name">Sunday · Apr 12</div>
         <ul class="day-events">
           <li class="day-event">
@@ -778,27 +831,50 @@
 
 <script>
 // ── ENTRY SCREEN ──
-const guests = ['aimee','cole','abby','vivi','rory','basile','lilja','megan','nathan'];
+const guests = ['nate','nathan','rory','megan','basile','abby','vivi','lilja'];
 const nameInput = document.getElementById('name-input');
 const entryScreen = document.getElementById('entry-screen');
 const entryError = document.getElementById('entry-error');
+
+function dismissEntry(displayName, instant) {
+  entryScreen.innerHTML = `
+    <p style="font-family:'Space Mono',monospace;font-size:0.65rem;letter-spacing:0.3em;color:var(--tide);text-transform:uppercase;margin-bottom:2rem;opacity:0;animation:fadeInUp 1s ease 0.3s forwards;">can't wait to see you</p>
+    <h1 style="font-family:'Playfair Display',serif;font-size:clamp(2rem,6vw,4rem);color:var(--sand);font-weight:400;opacity:0;animation:fadeInUp 1s ease 0.6s forwards;">Welcome,</h1>
+    <h1 style="font-family:'Playfair Display',serif;font-size:clamp(2rem,6vw,4rem);color:var(--blush);font-style:italic;font-weight:400;opacity:0;animation:fadeInUp 1s ease 0.9s forwards;">${displayName}</h1>
+  `;
+  const delay = instant ? 0 : 3000;
+  setTimeout(() => {
+    entryScreen.style.transition = 'opacity 1.5s ease';
+    entryScreen.style.opacity = '0';
+    setTimeout(() => entryScreen.remove(), 1500);
+  }, delay);
+}
+
+// Check localStorage for a recent login (within 24 hours)
+const stored = localStorage.getItem('pb_guest');
+if (stored) {
+  try {
+    const { name, ts } = JSON.parse(stored);
+    const age = Date.now() - ts;
+    if (age < 24 * 60 * 60 * 1000 && guests.includes(name)) {
+      const displayName = name.charAt(0).toUpperCase() + name.slice(1);
+      dismissEntry(displayName, true);
+    } else {
+      localStorage.removeItem('pb_guest');
+    }
+  } catch(e) {
+    localStorage.removeItem('pb_guest');
+  }
+}
 
 nameInput.addEventListener('keydown', (e) => {
   if (e.key === 'Enter') {
     const val = nameInput.value.trim().toLowerCase();
     if (guests.includes(val)) {
       const displayName = val.charAt(0).toUpperCase() + val.slice(1);
+      localStorage.setItem('pb_guest', JSON.stringify({ name: val, ts: Date.now() }));
       entryScreen.style.transition = 'none';
-      entryScreen.innerHTML = `
-        <p style="font-family:'Space Mono',monospace;font-size:0.65rem;letter-spacing:0.3em;color:var(--tide);text-transform:uppercase;margin-bottom:2rem;opacity:0;animation:fadeInUp 1s ease 0.3s forwards;">can't wait to see you</p>
-        <h1 style="font-family:'Playfair Display',serif;font-size:clamp(2rem,6vw,4rem);color:var(--sand);font-weight:400;opacity:0;animation:fadeInUp 1s ease 0.6s forwards;">Welcome,</h1>
-        <h1 style="font-family:'Playfair Display',serif;font-size:clamp(2rem,6vw,4rem);color:var(--blush);font-style:italic;font-weight:400;opacity:0;animation:fadeInUp 1s ease 0.9s forwards;">${displayName}</h1>
-      `;
-      setTimeout(() => {
-        entryScreen.style.transition = 'opacity 1.5s ease';
-        entryScreen.style.opacity = '0';
-        setTimeout(() => entryScreen.remove(), 1500);
-      }, 3000);
+      dismissEntry(displayName, false);
     } else {
       entryError.style.opacity = '1';
       nameInput.value = '';
@@ -1010,6 +1086,459 @@ function shootingStar() {
   document.body.appendChild(el);
   setTimeout(() => el.remove(), 1000);
 }
+
+// ── CONFETTI on "casting a spell" ──
+const spellDetails = document.querySelectorAll('details');
+let spellDetail = null;
+spellDetails.forEach(d => {
+  if (d.querySelector('.section-title') && d.querySelector('.section-title').textContent.includes('casting a spell')) {
+    spellDetail = d;
+  }
+});
+
+function launchConfetti(cx, cy) {
+  const colors = ['#f28627','#c9a882','#7fa8b8','#cab2d4','#77ab3c','#f0d890','#ffb3c6','#a8d8c8','#ffffff'];
+  const shapes = ['●', '■', '▲', '★', '✦', '◆'];
+  for (let i = 0; i < 80; i++) {
+    const el = document.createElement('div');
+    const size = 6 + Math.random() * 10;
+    const color = colors[Math.floor(Math.random() * colors.length)];
+    const shape = shapes[Math.floor(Math.random() * shapes.length)];
+    const angle = Math.random() * 360;
+    const dist = 60 + Math.random() * 200;
+    const dx = Math.cos(angle * Math.PI / 180) * dist;
+    const dy = Math.sin(angle * Math.PI / 180) * dist - 80;
+    const rot = Math.random() * 720 - 360;
+    const life = 0.8 + Math.random() * 1.2;
+    el.textContent = shape;
+    el.style.cssText = `
+      position: fixed;
+      left: ${cx}px; top: ${cy}px;
+      font-size: ${size}px;
+      color: ${color};
+      pointer-events: none;
+      z-index: 99999;
+      animation: confettiPop ${life}s ease forwards;
+      --dx: ${dx}px; --dy: ${dy}px; --rot: ${rot}deg;
+    `;
+    document.body.appendChild(el);
+    setTimeout(() => el.remove(), life * 1000);
+  }
+}
+
+const confettiStyle = document.createElement('style');
+confettiStyle.textContent = `
+  @keyframes confettiPop {
+    0%   { opacity: 1; transform: translate(0,0) rotate(0deg) scale(1); }
+    100% { opacity: 0; transform: translate(var(--dx), var(--dy)) rotate(var(--rot)) scale(0.3); }
+  }
+`;
+document.head.appendChild(confettiStyle);
+
+if (spellDetail) {
+  spellDetail.querySelector('summary').addEventListener('click', (e) => {
+    if (!spellDetail.hasAttribute('open')) {
+      launchConfetti(e.clientX, e.clientY);
+    }
+  });
+}
+
+// ── WEATHER ──
+const weatherDetails = document.getElementById('weather-details');
+let weatherLoaded = false;
+
+weatherDetails.querySelector('summary').addEventListener('click', () => {
+  if (!weatherLoaded && !weatherDetails.hasAttribute('open')) {
+    weatherLoaded = true;
+    fetchWeather();
+  }
+});
+
+async function fetchWeather() {
+  try {
+    // Pebble Beach coords: 36.5681, -121.9486
+    const url = 'https://api.open-meteo.com/v1/forecast?latitude=36.5681&longitude=-121.9486&daily=weathercode,temperature_2m_max,temperature_2m_min,precipitation_probability_max,windspeed_10m_max&temperature_unit=fahrenheit&windspeed_unit=mph&timezone=America%2FLos_Angeles&start_date=2026-04-10&end_date=2026-04-12&forecast_days=16';
+    const res = await fetch(url);
+    const data = await res.json();
+    renderWeather(data.daily);
+  } catch(e) {
+    document.getElementById('weather-loading').textContent = 'forecast unavailable — check back closer to the date!';
+  }
+}
+
+function wmoIcon(code) {
+  if (code === 0) return '☀️';
+  if (code <= 2) return '⛅';
+  if (code <= 3) return '☁️';
+  if (code <= 49) return '🌫️';
+  if (code <= 59) return '🌦️';
+  if (code <= 69) return '🌧️';
+  if (code <= 79) return '❄️';
+  if (code <= 82) return '🌧️';
+  if (code <= 99) return '⛈️';
+  return '🌡️';
+}
+
+function wmoDesc(code) {
+  if (code === 0) return 'Clear sky';
+  if (code <= 2) return 'Partly cloudy';
+  if (code <= 3) return 'Overcast';
+  if (code <= 49) return 'Foggy';
+  if (code <= 59) return 'Drizzle';
+  if (code <= 69) return 'Rainy';
+  if (code <= 79) return 'Snowy';
+  if (code <= 82) return 'Rain showers';
+  if (code <= 99) return 'Thunderstorm';
+  return 'Unknown';
+}
+
+function renderWeather(daily) {
+  const days = ['Friday Apr 10', 'Saturday Apr 11', 'Sunday Apr 12'];
+  const grid = document.getElementById('weather-grid');
+  grid.style.display = 'grid';
+  grid.style.gridTemplateColumns = 'repeat(auto-fit, minmax(200px, 1fr))';
+  grid.style.gap = '1.5rem';
+  grid.style.marginTop = '1rem';
+
+  for (let i = 0; i < 3; i++) {
+    const idx = daily.time.findIndex(d => d === ['2026-04-10','2026-04-11','2026-04-12'][i]);
+    const card = document.createElement('div');
+    card.style.cssText = `
+      background: var(--cream);
+      border-radius: 16px;
+      padding: 1.8rem 1.5rem;
+      text-align: center;
+      border: 1px solid rgba(127,168,184,0.15);
+    `;
+
+    if (idx === -1) {
+      card.innerHTML = `
+        <div style="font-family:'Space Mono',monospace;font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--blush);margin-bottom:0.8rem;">${days[i]}</div>
+        <div style="font-size:2rem;margin-bottom:0.5rem;">🌊</div>
+        <div style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1rem;color:var(--stone);">Check back soon!</div>
+      `;
+    } else {
+      const hi = Math.round(daily.temperature_2m_max[idx]);
+      const lo = Math.round(daily.temperature_2m_min[idx]);
+      const rain = daily.precipitation_probability_max[idx];
+      const wind = Math.round(daily.windspeed_10m_max[idx]);
+      const code = daily.weathercode[idx];
+
+      card.innerHTML = `
+        <div style="font-family:'Space Mono',monospace;font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--blush);margin-bottom:0.8rem;">${days[i]}</div>
+        <div style="font-size:2.5rem;margin-bottom:0.5rem;">${wmoIcon(code)}</div>
+        <div style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.1rem;color:var(--ocean);margin-bottom:1rem;">${wmoDesc(code)}</div>
+        <div style="font-family:'Playfair Display',serif;font-size:1.8rem;color:var(--ocean);margin-bottom:0.8rem;">${hi}° <span style="font-size:1rem;color:var(--stone);">/ ${lo}°</span></div>
+        <div style="display:flex;justify-content:center;gap:1.2rem;font-family:'Space Mono',monospace;font-size:0.6rem;color:var(--stone);letter-spacing:0.05em;">
+          <span>💧 ${rain}%</span>
+          <span>💨 ${wind} mph</span>
+        </div>
+      `;
+    }
+    grid.appendChild(card);
+  }
+  document.getElementById('weather-loading').style.display = 'none';
+}
+
+// ── DISCO EASTER EGG ──
+const discoStyle = document.createElement('style');
+discoStyle.textContent = `
+  @keyframes discoFlash {
+    0%   { background: hsl(0,100%,50%); }
+    10%  { background: hsl(36,100%,50%); }
+    20%  { background: hsl(72,100%,50%); }
+    30%  { background: hsl(120,100%,40%); }
+    40%  { background: hsl(180,100%,40%); }
+    50%  { background: hsl(240,100%,60%); }
+    60%  { background: hsl(280,100%,60%); }
+    70%  { background: hsl(320,100%,50%); }
+    80%  { background: hsl(0,100%,50%); }
+    90%  { background: hsl(60,100%,50%); }
+    100% { background: hsl(0,100%,50%); }
+  }
+  @keyframes discoText {
+    0%   { color: #fff; text-shadow: 0 0 20px #fff, 0 0 40px #fff; }
+    25%  { color: #ffe000; text-shadow: 0 0 20px #ffe000, 0 0 60px #ffe000; }
+    50%  { color: #ff00ff; text-shadow: 0 0 20px #ff00ff, 0 0 60px #ff00ff; }
+    75%  { color: #00ffff; text-shadow: 0 0 20px #00ffff, 0 0 60px #00ffff; }
+    100% { color: #fff; text-shadow: 0 0 20px #fff, 0 0 40px #fff; }
+  }
+  @keyframes discoBall {
+    0%   { transform: translateX(-50%) scale(0) rotate(0deg); opacity: 0; }
+    20%  { transform: translateX(-50%) scale(1.2) rotate(180deg); opacity: 1; }
+    80%  { transform: translateX(-50%) scale(1) rotate(700deg); opacity: 1; }
+    100% { transform: translateX(-50%) scale(0) rotate(900deg); opacity: 0; }
+  }
+  @keyframes discoBeam {
+    0%   { opacity: 0; transform: rotate(var(--r)) scaleY(0); }
+    30%  { opacity: 0.7; transform: rotate(var(--r)) scaleY(1); }
+    70%  { opacity: 0.7; transform: rotate(calc(var(--r) + 180deg)) scaleY(1); }
+    100% { opacity: 0; transform: rotate(calc(var(--r) + 360deg)) scaleY(0); }
+  }
+  .disco-overlay {
+    position: fixed; inset: 0; z-index: 99998;
+    animation: discoFlash 0.4s linear infinite;
+    opacity: 0.18;
+    pointer-events: none;
+  }
+  .disco-ball {
+    position: fixed;
+    top: -60px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px; height: 80px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 35%, #fff 0%, #ccc 40%, #888 100%);
+    box-shadow: 0 0 30px rgba(255,255,255,0.8), inset -10px -10px 20px rgba(0,0,0,0.3);
+    z-index: 99999;
+    pointer-events: none;
+    animation: discoBall 5s ease forwards;
+  }
+  .disco-ball::before {
+    content: '';
+    position: absolute; inset: 5px;
+    border-radius: 50%;
+    background: repeating-conic-gradient(rgba(255,255,255,0.3) 0deg 10deg, transparent 10deg 20deg);
+  }
+  .disco-beam {
+    position: fixed;
+    top: 0; left: 50%;
+    width: 3px; height: 60vh;
+    transform-origin: top center;
+    pointer-events: none;
+    z-index: 99997;
+    animation: discoBeam 5s ease forwards;
+  }
+  .disco-msg {
+    position: fixed;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: clamp(2rem, 8vw, 5rem);
+    color: #fff;
+    text-align: center;
+    pointer-events: none;
+    z-index: 99999;
+    animation: discoText 0.5s linear infinite;
+    white-space: nowrap;
+  }
+`;
+document.head.appendChild(discoStyle);
+
+document.getElementById('hero-date').addEventListener('click', () => {
+  // overlay
+  const overlay = document.createElement('div');
+  overlay.className = 'disco-overlay';
+  document.body.appendChild(overlay);
+
+  // disco ball
+  const ball = document.createElement('div');
+  ball.className = 'disco-ball';
+  document.body.appendChild(ball);
+
+  // beams
+  const beamColors = ['#ff00ff','#00ffff','#ffe000','#ff4400','#00ff88','#4488ff'];
+  for (let i = 0; i < 8; i++) {
+    const beam = document.createElement('div');
+    beam.className = 'disco-beam';
+    beam.style.cssText = `background: linear-gradient(to bottom, ${beamColors[i % beamColors.length]}, transparent); --r: ${i * 45}deg; animation-delay: ${i * 0.08}s;`;
+    document.body.appendChild(beam);
+    setTimeout(() => beam.remove(), 5200);
+  }
+
+  // message
+  const msg = document.createElement('div');
+  msg.className = 'disco-msg';
+  msg.textContent = '🪩 let\'s party! 🪩';
+  document.body.appendChild(msg);
+
+  // confetti burst
+  launchConfetti(window.innerWidth / 2, window.innerHeight / 2);
+  setTimeout(() => launchConfetti(window.innerWidth * 0.25, window.innerHeight * 0.5), 400);
+  setTimeout(() => launchConfetti(window.innerWidth * 0.75, window.innerHeight * 0.5), 700);
+
+  setTimeout(() => {
+    overlay.remove();
+    ball.remove();
+    msg.remove();
+  }, 5000);
+});
+
+// ── JELLYFISH ──
+const jellyfishStyle = document.createElement('style');
+jellyfishStyle.textContent = `
+  @keyframes jellyfishRise {
+    0%   { opacity: 0; transform: translateY(0) translateX(0); }
+    6%   { opacity: 0.9; }
+    93%  { opacity: 0.9; }
+    100% { opacity: 0; transform: translateY(-115vh) translateX(var(--drift)); }
+  }
+  @keyframes jellyBell {
+    0%, 100% { transform: scaleY(1) scaleX(1); }
+    40%       { transform: scaleY(0.78) scaleX(1.08); }
+    70%       { transform: scaleY(1.04) scaleX(0.97); }
+  }
+  @keyframes jellyGlow {
+    0%, 100% { opacity: 0.12; r: 26px; }
+    50%       { opacity: 0.32; r: 30px; }
+  }
+  .jellyfish-wrap {
+    position: fixed;
+    bottom: -180px;
+    pointer-events: none;
+    z-index: 9990;
+    animation: jellyfishRise var(--dur) cubic-bezier(0.45,0.05,0.55,0.95) forwards;
+  }
+  .jellyfish-bell {
+    animation: jellyBell var(--pulse) ease-in-out infinite;
+    transform-origin: 50% 85%;
+  }
+`;
+document.head.appendChild(jellyfishStyle);
+
+function spawnJellyfish() {
+  const hues = [210, 255, 280, 190, 300];
+  const hue = hues[Math.floor(Math.random() * hues.length)] + (Math.random() * 30 - 15);
+  const size = 0.55 + Math.random() * 0.7;
+  const dur = 11 + Math.random() * 7;
+  const pulse = 1.4 + Math.random() * 1.0;
+  const startX = 60 + Math.random() * (window.innerWidth - 120);
+  const drift = (Math.random() - 0.5) * 160;
+
+  const c1 = `hsla(${hue},75%,78%,0.5)`;
+  const c2 = `hsla(${hue},65%,85%,0.25)`;
+  const stroke = `hsla(${hue},80%,88%,0.75)`;
+  const tentStroke = `hsla(${hue},65%,82%,0.65)`;
+  const glowCol = `hsla(${hue},85%,75%,1)`;
+
+  // Build organic bell using bezier curves
+  const wrap = document.createElement('div');
+  wrap.className = 'jellyfish-wrap';
+  wrap.style.cssText = `left:${startX}px; --drift:${drift}px; --dur:${dur}s; --pulse:${pulse}s;`;
+
+  // Random slight asymmetry per jellyfish
+  const lw = 28 + Math.random() * 6;
+  const rw = 28 + Math.random() * 6;
+  const bellH = 30 + Math.random() * 8;
+
+  wrap.innerHTML = `
+<svg width="80" height="160" viewBox="0 0 80 160" fill="none" xmlns="http://www.w3.org/2000/svg" style="transform:scale(${size});transform-origin:bottom center;overflow:visible;">
+  <defs>
+    <radialGradient id="jg${Math.round(hue)}" cx="42%" cy="35%" r="58%">
+      <stop offset="0%" stop-color="hsla(${hue},90%,92%,0.6)"/>
+      <stop offset="55%" stop-color="${c1}"/>
+      <stop offset="100%" stop-color="${c2}"/>
+    </radialGradient>
+    <filter id="jblur${Math.round(hue)}">
+      <feGaussianBlur stdDeviation="3"/>
+    </filter>
+  </defs>
+
+  <!-- soft outer glow -->
+  <ellipse cx="40" cy="36" rx="29" ry="25" fill="${glowCol}" filter="url(#jblur${Math.round(hue)})" opacity="0.13" style="animation:jellyGlow ${pulse}s ease-in-out infinite;"/>
+
+  <!-- bell group -->
+  <g class="jellyfish-bell">
+    <!-- main bell shape — organic asymmetric dome -->
+    <path d="M40,10
+      C${40+lw},10 ${40+rw+8},22 ${40+rw+4},44
+      C${40+rw},58 ${40+8},64 40,65
+      C${40-8},64 ${40-lw},58 ${40-lw-4},44
+      C${40-rw-8},22 ${40-lw},10 40,10 Z"
+      fill="url(#jg${Math.round(hue)})"
+      stroke="${stroke}" stroke-width="1"/>
+
+    <!-- inner shimmer dome -->
+    <path d="M40,16
+      C${40+14},16 ${40+20},26 ${40+16},40
+      C${40+10},50 ${40+4},54 40,54
+      C${40-4},54 ${40-10},50 ${40-16},40
+      C${40-20},26 ${40-14},16 40,16 Z"
+      fill="hsla(${hue},90%,97%,0.12)" stroke="none"/>
+
+    <!-- subtle vein lines -->
+    <path d="M40,12 Q${40+6},35 ${40+2},62" stroke="hsla(${hue},70%,90%,0.2)" stroke-width="0.7" fill="none"/>
+    <path d="M40,12 Q${40-5},35 ${40-3},62" stroke="hsla(${hue},70%,90%,0.2)" stroke-width="0.7" fill="none"/>
+    <path d="M40,12 Q${40+16},30 ${40+14},56" stroke="hsla(${hue},70%,90%,0.15)" stroke-width="0.6" fill="none"/>
+    <path d="M40,12 Q${40-16},30 ${40-14},56" stroke="hsla(${hue},70%,90%,0.15)" stroke-width="0.6" fill="none"/>
+
+    <!-- wavy bottom frill -->
+    <path d="M${40-lw-2},46
+      Q${40-lw+2},54 ${40-lw+8},48
+      Q${40-8},58 40,52
+      Q${40+8},58 ${40+lw-8},48
+      Q${40+lw-2},54 ${40+lw+2},46"
+      fill="hsla(${hue},70%,88%,0.2)" stroke="${stroke}" stroke-width="0.9" fill="none"/>
+  </g>
+
+  <!-- tentacles — long organic wavy paths -->
+  <g opacity="0.72">
+    <path d="M${40-18},63 C${40-22},80 ${40-14},98 ${40-20},118 C${40-24},132 ${40-18},145 ${40-22},158" fill="none" stroke="${tentStroke}" stroke-width="1.3" stroke-linecap="round">
+      <animate attributeName="d"
+        values="M${40-18},63 C${40-22},80 ${40-14},98 ${40-20},118 C${40-24},132 ${40-18},145 ${40-22},158;
+                M${40-18},63 C${40-10},80 ${40-22},98 ${40-14},118 C${40-10},132 ${40-22},145 ${40-16},158;
+                M${40-18},63 C${40-22},80 ${40-14},98 ${40-20},118 C${40-24},132 ${40-18},145 ${40-22},158"
+        dur="${pulse * 1.1}s" repeatCount="indefinite"/>
+    </path>
+    <path d="M${40-9},66 C${40-12},84 ${40-4},102 ${40-10},122 C${40-14},136 ${40-8},148 ${40-12},162" fill="none" stroke="${tentStroke}" stroke-width="1.1" stroke-linecap="round">
+      <animate attributeName="d"
+        values="M${40-9},66 C${40-12},84 ${40-4},102 ${40-10},122 C${40-14},136 ${40-8},148 ${40-12},162;
+                M${40-9},66 C${40-2},84 ${40-14},102 ${40-6},122 C${40-2},136 ${40-12},148 ${40-8},162;
+                M${40-9},66 C${40-12},84 ${40-4},102 ${40-10},122 C${40-14},136 ${40-8},148 ${40-12},162"
+        dur="${pulse * 0.88}s" repeatCount="indefinite"/>
+    </path>
+    <path d="M40,67 C38,86 42,104 38,124 C35,138 40,150 37,164" fill="none" stroke="${tentStroke}" stroke-width="1.4" stroke-linecap="round">
+      <animate attributeName="d"
+        values="M40,67 C38,86 42,104 38,124 C35,138 40,150 37,164;
+                M40,67 C44,86 36,104 42,124 C46,138 38,150 42,164;
+                M40,67 C38,86 42,104 38,124 C35,138 40,150 37,164"
+        dur="${pulse * 0.95}s" repeatCount="indefinite"/>
+    </path>
+    <path d="M${40+9},66 C${40+12},84 ${40+4},102 ${40+10},122 C${40+14},136 ${40+8},148 ${40+12},162" fill="none" stroke="${tentStroke}" stroke-width="1.1" stroke-linecap="round">
+      <animate attributeName="d"
+        values="M${40+9},66 C${40+12},84 ${40+4},102 ${40+10},122 C${40+14},136 ${40+8},148 ${40+12},162;
+                M${40+9},66 C${40+2},84 ${40+14},102 ${40+6},122 C${40+2},136 ${40+12},148 ${40+8},162;
+                M${40+9},66 C${40+12},84 ${40+4},102 ${40+10},122 C${40+14},136 ${40+8},148 ${40+12},162"
+        dur="${pulse * 1.05}s" repeatCount="indefinite"/>
+    </path>
+    <path d="M${40+18},63 C${40+22},80 ${40+14},98 ${40+20},118 C${40+24},132 ${40+18},145 ${40+22},158" fill="none" stroke="${tentStroke}" stroke-width="1.3" stroke-linecap="round">
+      <animate attributeName="d"
+        values="M${40+18},63 C${40+22},80 ${40+14},98 ${40+20},118 C${40+24},132 ${40+18},145 ${40+22},158;
+                M${40+18},63 C${40+10},80 ${40+22},98 ${40+14},118 C${40+10},132 ${40+22},145 ${40+16},158;
+                M${40+18},63 C${40+22},80 ${40+14},98 ${40+20},118 C${40+24},132 ${40+18},145 ${40+22},158"
+        dur="${pulse * 1.18}s" repeatCount="indefinite"/>
+    </path>
+    <!-- two extra thin wispy ones -->
+    <path d="M${40-28},52 C${40-34},70 ${40-26},90 ${40-32},112 C${40-36},128 ${40-30},138 ${40-34},152" fill="none" stroke="${tentStroke}" stroke-width="0.7" stroke-linecap="round" opacity="0.5">
+      <animate attributeName="d"
+        values="M${40-28},52 C${40-34},70 ${40-26},90 ${40-32},112 C${40-36},128 ${40-30},138 ${40-34},152;
+                M${40-28},52 C${40-20},70 ${40-34},90 ${40-26},112 C${40-22},128 ${40-34},138 ${40-28},152;
+                M${40-28},52 C${40-34},70 ${40-26},90 ${40-32},112 C${40-36},128 ${40-30},138 ${40-34},152"
+        dur="${pulse * 1.3}s" repeatCount="indefinite"/>
+    </path>
+    <path d="M${40+28},52 C${40+34},70 ${40+26},90 ${40+32},112 C${40+36},128 ${40+30},138 ${40+34},152" fill="none" stroke="${tentStroke}" stroke-width="0.7" stroke-linecap="round" opacity="0.5">
+      <animate attributeName="d"
+        values="M${40+28},52 C${40+34},70 ${40+26},90 ${40+32},112 C${40+36},128 ${40+30},138 ${40+34},152;
+                M${40+28},52 C${40+20},70 ${40+34},90 ${40+26},112 C${40+22},128 ${40+34},138 ${40+28},152;
+                M${40+28},52 C${40+34},70 ${40+26},90 ${40+32},112 C${40+36},128 ${40+30},138 ${40+34},152"
+        dur="${pulse * 1.22}s" repeatCount="indefinite"/>
+    </path>
+  </g>
+</svg>`;
+
+  document.body.appendChild(wrap);
+  setTimeout(() => wrap.remove(), (dur + 0.5) * 1000);
+}
+
+// Spawn 3 jellyfish, staggered
+function spawnGroup() {
+  spawnJellyfish();
+  setTimeout(spawnJellyfish, 1200 + Math.random() * 800);
+  setTimeout(spawnJellyfish, 2600 + Math.random() * 1000);
+}
+
+setInterval(() => { if (Math.random() < 0.01) spawnGroup(); }, 8000);
 
 setInterval(shootingStar, 4000);
 </script>
