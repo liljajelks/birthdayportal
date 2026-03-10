@@ -17,17 +17,15 @@
     --poppy: #f28627;
     --cream: #faf7f2;
     --ink: #1c1c1c;
-    /* ── Photo-pulled palette ── */
-    --twilight: #b8c4d4;    /* dusty blue-purple sky */
-    --lavender: #cab2d4;    /* soft purple sky tone */
-    --terracotta: #8b4a2e;  /* warm rust mulch */
-    --sage: #7a8c6e;        /* muted sage green foliage */
-    --stone: #c4a882;       /* warm sandstone path */
-    --dusk-blue: #6a7d9e;   /* mid-tone twilight blue */
+    --twilight: #b8c4d4;
+    --lavender: #cab2d4;
+    --terracotta: #8b4a2e;
+    --sage: #7a8c6e;
+    --stone: #c4a882;
+    --dusk-blue: #6a7d9e;
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
-
   html { scroll-behavior: smooth; }
 
   body {
@@ -35,7 +33,7 @@
     color: var(--ink);
     font-family: 'Cormorant Garamond', serif;
     overflow-x: hidden;
-}
+  }
 
   /* ─── HERO ─── */
   .hero {
@@ -49,12 +47,12 @@
   }
 
   .hero-waves {
-  position: absolute;
-  bottom: 0; left: 0; right: 0;
-  height: 200px;
-  opacity: 0.8;
-  width: 100%;
-}
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 200px;
+    opacity: 0.15;
+    width: 100%;
+  }
 
   .stars {
     position: absolute;
@@ -193,7 +191,7 @@
     font-size: 0.65rem;
     letter-spacing: 0.3em;
     text-transform: uppercase;
-    color: var(--blush);
+    color: var(--stone);
     margin-bottom: 1rem;
   }
 
@@ -222,12 +220,13 @@
     max-width: 900px;
     margin: 0 auto;
     height: 1px;
-    background: linear-gradient(to right, transparent, var(--fog), transparent);
+    background: linear-gradient(to right, transparent, var(--twilight), transparent);
+    opacity: 0.4;
   }
 
   /* ─── WISH SECTION ─── */
   .wish-section {
-    background: var(--deep);
+    background: linear-gradient(160deg, var(--deep) 60%, #2a2040 100%);
     color: var(--sand);
     padding: 6rem 2rem;
     position: relative;
@@ -245,40 +244,22 @@
     pointer-events: none;
   }
 
-  .wish-inner {
-    max-width: 900px;
-    margin: 0 auto;
-  }
-
+  .wish-inner { max-width: 900px; margin: 0 auto; }
   .wish-section .section-label { color: var(--blush); }
-
   .wish-section .section-title { color: var(--sand); }
-
   .wish-section .section-body { color: var(--fog); font-size: 1.3rem; }
 
   .wish-examples {
     font-family: 'Cormorant Garamond', serif;
     font-style: italic;
     font-size: clamp(1.2rem, 3vw, 1.6rem);
-    color: var(--blush);
+    color: var(--lavender);
     line-height: 1.6;
     margin-top: 2.5rem;
     padding-left: 2rem;
-    border-left: 2px solid var(--blush);
+    border-left: 2px solid var(--lavender);
     max-width: 600px;
     opacity: 0.9;
-  }
-
-  .wish-quote {
-    font-family: 'Playfair Display', serif;
-    font-style: italic;
-    font-size: clamp(1.5rem, 4vw, 2.5rem);
-    color: var(--blush);
-    line-height: 1.4;
-    margin-top: 2.5rem;
-    padding-left: 2rem;
-    border-left: 2px solid var(--blush);
-    max-width: 700px;
   }
 
   /* ─── LOCATION ─── */
@@ -317,14 +298,11 @@
 
   /* ─── SCHEDULE ─── */
   .schedule-section {
-    background: var(--sand);
+    background: linear-gradient(180deg, var(--sand) 0%, #ede8e0 100%);
     padding: 6rem 2rem;
   }
 
-  .schedule-inner {
-    max-width: 900px;
-    margin: 0 auto;
-  }
+  .schedule-inner { max-width: 900px; margin: 0 auto; }
 
   .days-grid {
     display: grid;
@@ -418,7 +396,7 @@
 
   /* ─── FOOTER ─── */
   footer {
-    background: var(--deep);
+    background: linear-gradient(160deg, var(--deep) 50%, #1a1520 100%);
     color: var(--fog);
     text-align: center;
     padding: 4rem 2rem;
@@ -433,7 +411,6 @@
   }
 
   footer p {
-    font-size: 1rem;
     opacity: 0.6;
     font-family: 'Space Mono', monospace;
     font-size: 0.7rem;
@@ -455,43 +432,6 @@
 
   .fade-up:nth-child(2) { transition-delay: 0.1s; }
   .fade-up:nth-child(3) { transition-delay: 0.2s; }
-
-  /* ─── PHOTO COLOR ACCENTS ─── */
-  .wish-section {
-    background: linear-gradient(160deg, var(--deep) 60%, #2a2040 100%);
-  }
-
-  .wish-examples {
-    border-left-color: var(--lavender);
-    color: var(--lavender);
-  }
-
-  .section-label { color: var(--stone); }
-
-  .divider {
-    background: linear-gradient(to right, transparent, var(--twilight), transparent);
-    opacity: 0.4;
-  }
-
-  .schedule-section {
-    background: linear-gradient(180deg, var(--sand) 0%, #ede8e0 100%);
-  }
-
-  footer {
-    background: linear-gradient(160deg, var(--deep) 50%, #1a1520 100%);
-  }
-
-  /* Sage/terracotta color bar on section labels */
-  .section-label.sage  { color: var(--sage); }
-  .section-label.terra { color: var(--terracotta); }
-
-  /* Twilight tinted blockquote-style accent */
-  .twilight-accent {
-    border-left: 2px solid var(--twilight);
-    padding-left: 1.5rem;
-    color: var(--dusk-blue);
-  }
-
 
   /* ─── HOUSE PHOTO ─── */
   .house-photo {
@@ -516,17 +456,17 @@
     margin-top: 0.8rem;
     text-align: right;
   }
-  
-   /* ─── COLLAPSIBLE SECTIONS ─── */
+
+  /* ─── COLLAPSIBLE SECTIONS ─── */
   details > summary {
     list-style: none;
     cursor: pointer;
     position: relative;
     padding-right: 2.5rem;
   }
-  details > summary::-webkit-details-marker {
-    display: none;
-  }
+
+  details > summary::-webkit-details-marker { display: none; }
+
   details > summary::after {
     content: '';
     position: absolute;
@@ -540,85 +480,104 @@
     transition: transform 0.3s ease, opacity 0.3s ease;
     opacity: 0.5;
   }
+
   details[open] > summary::after {
     transform: translateY(-30%) rotate(135deg);
     opacity: 0.7;
   }
-  details > summary:hover::after {
-    opacity: 1;
-  }
+
+  details > summary:hover::after { opacity: 1; }
+
   details > *:not(summary) {
     animation: slideDown 0.35s ease;
   }
+
   @keyframes slideDown {
     from { opacity: 0; transform: translateY(-8px); }
     to   { opacity: 1; transform: translateY(0); }
   }
 
+  /* pulsing dot under arrow */
+  details > summary::before {
+    content: '';
+    position: absolute;
+    right: calc(0.5rem + 12px);
+    top: calc(50% + 24px);
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--lavender);
+    animation: dotPulse 1.8s ease-in-out infinite;
+  }
+
+  details[open] > summary::before { display: none; }
+
+  @keyframes dotPulse {
+    0%, 100% { transform: scale(1); opacity: 0.5; }
+    50%       { transform: scale(1.6); opacity: 1; }
+  }
+
+  /* ─── ORBS ─── */
   .orb {
-  position: fixed;
-  border-radius: 50%;
-  filter: blur(120px);
-  opacity: 0.08;
-  pointer-events: none;
-  z-index: 0.12;
-  animation: 
-    orbFloat var(--dur, 20s) ease-in-out infinite alternate,
-    orbBreath var(--bdur, 12s) ease-in-out infinite alternate;
-}
+    position: fixed;
+    border-radius: 50%;
+    filter: blur(120px);
+    pointer-events: none;
+    z-index: 0;
+    animation:
+      orbFloat var(--dur, 20s) ease-in-out infinite alternate,
+      orbBreath var(--bdur, 12s) ease-in-out infinite alternate;
+  }
 
-@keyframes orbBreath {
-  0%   { opacity: 0.03; }
-  100% { opacity: 0.12; }
-}
- details > summary::before {
-  content: 'press me';
-  position: absolute;
-  right: 0.2rem;
-  top: calc(50% + 22px);
-  font-family: 'Space Mono', monospace;
-  font-size: 0.5rem;
-  letter-spacing: 0.15em;
-  color: var(--lavender);
-  opacity: 0.7;
-  text-transform: lowercase;
-}
+  @keyframes orbFloat {
+    0%   { transform: translate(0, 0) scale(1); }
+    100% { transform: translate(var(--tx, 40px), var(--ty, 30px)) scale(1.15); }
+  }
 
-details[open] > summary::before {
-  display: none;
-}
+  @keyframes orbBreath {
+    0%   { opacity: 0.03; }
+    100% { opacity: 0.12; }
+  }
 
-details[open] > summary::before {
-  display: none;
-}
   @keyframes fadeInUp {
-  from { opacity: 0; transform: translateY(20px); }
-  to   { opacity: 1; transform: translateY(0); }
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* section label color variants */
+  .section-label.sage  { color: var(--sage); }
+  .section-label.terra { color: var(--terracotta); }
+
+  .twilight-accent {
+    border-left: 2px solid var(--twilight);
+    padding-left: 1.5rem;
+    color: var(--dusk-blue);
+  }
 </style>
 </head>
 <body>
-// ── ENTRY SCREEN ──
-const guests = ['aimee','cole','abby','vivi','rory','basile','lilja'];
-const nameInput = document.getElementById('name-input');
-const entryScreen = document.getElementById('entry-screen');
-const entryError = document.getElementById('entry-error');
 
-nameInput.addEventListener('keydown', (e) => {
-  if (e.key === 'Enter') {
-    const val = nameInput.value.trim().toLowerCase();
-    if (guests.includes(val)) {
-      entryScreen.style.opacity = '0';
-      setTimeout(() => entryScreen.remove(), 1500);
-    } else {
-      entryError.style.opacity = '1';
-      nameInput.value = '';
-      setTimeout(() => entryError.style.opacity = '0', 2000);
-    }
-  }
-});
-<div class="orb" style="width:500px;height:500px;background:#c4b8d0;top:-100px;left:-100px;--dur:25s;--tx:60px;--ty:50px;"></div>
-<div class="orb" style="width:400px;height:400px;background:#f5f0ee;top:40%;right:-80px;--dur:18s;--tx:-50px;--ty:40px;"></div>
-<div class="orb" style="width:350px;height:350px;background:#f0edf4;bottom:10%;left:30%;--dur:22s;--tx:30px;--ty:-60px;"></div>
+<!-- ─── ENTRY SCREEN ─── -->
+<div id="entry-screen" style="
+  position: fixed; inset: 0; z-index: 99999;
+  background: var(--deep);
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  text-align: center; padding: 2rem;
+  transition: opacity 1.5s ease;
+">
+  <p style="font-family:'Space Mono',monospace;font-size:0.65rem;letter-spacing:0.3em;color:var(--tide);text-transform:uppercase;margin-bottom:2rem;">you are invited</p>
+  <h1 style="font-family:'Playfair Display',serif;font-size:clamp(2rem,6vw,4rem);color:var(--sand);font-weight:400;margin-bottom:0.5rem;">Who are you,</h1>
+  <h1 style="font-family:'Playfair Display',serif;font-size:clamp(2rem,6vw,4rem);color:var(--blush);font-style:italic;font-weight:400;margin-bottom:3rem;">sweet friend?</h1>
+  <input id="name-input" type="text" placeholder="your name..." autofocus style="background:transparent;border:none;border-bottom:1px solid rgba(127,168,184,0.4);color:var(--sand);font-family:'Cormorant Garamond',serif;font-size:1.5rem;text-align:center;padding:0.5rem 1rem;outline:none;width:280px;letter-spacing:0.05em;">
+  <p id="entry-hint" style="font-family:'Space Mono',monospace;font-size:0.55rem;letter-spacing:0.2em;color:var(--tide);margin-top:1rem;opacity:0.6;">press enter</p>
+  <p id="entry-error" style="font-family:'Space Mono',monospace;font-size:0.55rem;letter-spacing:0.2em;color:var(--poppy);margin-top:1rem;opacity:0;transition:opacity 0.3s;">hmm, i don't recognize you...</p>
+</div>
+
+<!-- ─── ORBS ─── -->
+<div class="orb" style="width:500px;height:500px;background:#c4b8d0;top:-100px;left:-100px;--dur:25s;--tx:60px;--ty:50px;--bdur:16s;"></div>
+<div class="orb" style="width:400px;height:400px;background:#f5f0ee;top:40%;right:-80px;--dur:18s;--tx:-50px;--ty:40px;--bdur:11s;"></div>
+<div class="orb" style="width:350px;height:350px;background:#f0edf4;bottom:10%;left:30%;--dur:22s;--tx:30px;--ty:-60px;--bdur:14s;"></div>
 
 <!-- ─── HERO ─── -->
 <div class="hero">
@@ -668,6 +627,7 @@ nameInput.addEventListener('keydown', (e) => {
     <p class="wish-examples">Examples include an edible contribution, music serenade, facilitated walk in nature, a performance of sorts, scavenger hunt...</p>
   </details>
 </section>
+
 <div class="divider"></div>
 
 <!-- ─── LOCATION ─── -->
@@ -677,25 +637,26 @@ nameInput.addEventListener('keydown', (e) => {
       <p class="section-label">Where we're staying</p>
       <h2 class="section-title">A home<br><em>by the sea</em></h2>
     </summary>
-  <p class="section-body">
-    My parents have graciously offered their home for the weekend, and I cannot wait to welcome you through the door.
-  </p>
-<div class="house-photo fade-up">
-  <img src="https://placehold.co/600x400">
-  <p class="photo-caption">home base for the weekend</p>
-  </div>
-  <div class="location-grid">
-    <div class="location-detail fade-up">
-      <h4>Sleeping arrangements</h4>
-      <p>Sleeping logistics will be crafty. All of us will find a cozy spot — some beds, most on air mattresses. Sleepover! ... Pillow fight!?.</p>
+    <p class="section-body">
+      My parents have graciously offered their home for the weekend, and I cannot wait to welcome you through the door.
+    </p>
+    <div class="house-photo fade-up">
+      <img src="https://placehold.co/600x400">
+      <p class="photo-caption">home base for the weekend</p>
     </div>
-    <div class="location-detail fade-up">
-      <h4>Arrival</h4>
-      <p>Come whenever you'd like on Friday. The house opens its arms to you all day. The weekend together will "start" after 5:00 pm.</p>
+    <div class="location-grid">
+      <div class="location-detail fade-up">
+        <h4>Sleeping arrangements</h4>
+        <p>Sleeping logistics will be crafty. All of us will find a cozy spot — some beds, most on air mattresses. Sleepover! ... Pillow fight!?.</p>
+      </div>
+      <div class="location-detail fade-up">
+        <h4>Arrival</h4>
+        <p>Come whenever you'd like on Friday. The house opens its arms to you all day. The weekend together will "start" after 5:00 pm.</p>
+      </div>
     </div>
-  </div>
   </details>
 </section>
+
 <div class="divider"></div>
 
 <!-- ─── SCHEDULE ─── -->
@@ -827,22 +788,17 @@ nameInput.addEventListener('keydown', (e) => {
     const val = nameInput.value.trim().toLowerCase();
     if (guests.includes(val)) {
       const displayName = val.charAt(0).toUpperCase() + val.slice(1);
-      
-      // Fade out the form content
       entryScreen.style.transition = 'none';
       entryScreen.innerHTML = `
         <p style="font-family:'Space Mono',monospace;font-size:0.65rem;letter-spacing:0.3em;color:var(--tide);text-transform:uppercase;margin-bottom:2rem;opacity:0;animation:fadeInUp 1s ease 0.3s forwards;">a gift for you</p>
         <h1 style="font-family:'Playfair Display',serif;font-size:clamp(2rem,6vw,4rem);color:var(--sand);font-weight:400;opacity:0;animation:fadeInUp 1s ease 0.6s forwards;">welcome,</h1>
         <h1 style="font-family:'Playfair Display',serif;font-size:clamp(2rem,6vw,4rem);color:var(--blush);font-style:italic;font-weight:400;opacity:0;animation:fadeInUp 1s ease 0.9s forwards;">${displayName}</h1>
       `;
-
-      // Then fade the whole screen out
       setTimeout(() => {
         entryScreen.style.transition = 'opacity 1.5s ease';
         entryScreen.style.opacity = '0';
         setTimeout(() => entryScreen.remove(), 1500);
       }, 3000);
-
     } else {
       entryError.style.opacity = '1';
       nameInput.value = '';
@@ -850,218 +806,181 @@ nameInput.addEventListener('keydown', (e) => {
     }
   }
 });
-  // ── STARS ──
-  const starsContainer = document.getElementById('stars');
-  const starEls = [];
-  for (let i = 0; i < 130; i++) {
-    const star = document.createElement('div');
-    star.className = 'star';
-    const size = Math.random() * 2.5 + 0.5;
-    star.style.cssText = `
-      width: ${size}px; height: ${size}px;
-      left: ${Math.random() * 100}%; top: ${Math.random() * 75}%;
-      --d: ${2 + Math.random() * 4}s;
-      animation-delay: ${Math.random() * 4}s;
-      transition: opacity 3s ease;
-    `;
-    starsContainer.appendChild(star);
-    starEls.push(star);
-  }
 
-  // ── SKY PHASES (60s cycle) ──
-  const phases = [
-    { name: 'night',
-      bg: ['#0a1520', '#1a2e3b', '#0d1f2d'],
-      horizon: 'rgba(26,46,59,0.9)', stars: 1,
-      celestial: { size: 80, top: 12, right: 14, label: 'moon',
-        core: ['#fff9f0','#f0d890','#e8c860'],
-        shadow: '0 0 40px 12px rgba(240,216,144,0.4), 0 0 80px 30px rgba(240,216,144,0.15)' }
-    },
-    { name: 'predawn',
-      bg: ['#0d1a3a', '#1a2a4e', '#2a1a3e'],
-      horizon: 'rgba(60,30,80,0.7)', stars: 0.8,
-      celestial: { size: 75, top: 18, right: 18, label: 'moon',
-        core: ['#fff5e0','#f0d080','#e8c050'],
-        shadow: '0 0 30px 8px rgba(240,208,128,0.3), 0 0 60px 20px rgba(240,208,128,0.1)' }
-    },
-    { name: 'sunrise',
-      bg: ['#1a1a3a', '#3a1a2e', '#6b2d3e'],
-      horizon: 'rgba(200,80,60,0.6)', stars: 0.3,
-      celestial: { size: 70, top: 60, right: 10, label: 'sun',
-        core: ['#fff0c0','#ffb830','#ff8020'],
-        shadow: '0 0 50px 20px rgba(255,180,50,0.5), 0 0 100px 40px rgba(255,120,30,0.2)' }
-    },
-    { name: 'golden',
-      bg: ['#1a2a4a', '#4a2a1a', '#c05a20'],
-      horizon: 'rgba(240,140,40,0.7)', stars: 0.05,
-      celestial: { size: 90, top: 40, right: 8, label: 'sun',
-        core: ['#fff5d0','#ffd050','#ffaa20'],
-        shadow: '0 0 60px 25px rgba(255,210,80,0.6), 0 0 120px 50px rgba(255,160,30,0.25)' }
-    },
-    { name: 'day',
-      bg: ['#0a3a6a', '#1a5a8a', '#2a7aaa'],
-      horizon: 'rgba(80,160,200,0.5)', stars: 0,
-      celestial: { size: 100, top: 15, right: 20, label: 'sun',
-        core: ['#ffffff','#fff8d0','#ffee80'],
-        shadow: '0 0 70px 30px rgba(255,240,150,0.7), 0 0 140px 60px rgba(255,220,80,0.3)' }
-    },
-    { name: 'afternoon',
-      bg: ['#0a2a5a', '#1a4a7a', '#3a8aaa'],
-      horizon: 'rgba(60,140,180,0.5)', stars: 0,
-      celestial: { size: 95, top: 20, right: 35, label: 'sun',
-        core: ['#ffffff','#fff5c0','#ffe860'],
-        shadow: '0 0 60px 25px rgba(255,230,100,0.6), 0 0 120px 50px rgba(255,200,60,0.25)' }
-    },
-    { name: 'sunset',
-      bg: ['#1a1a3a', '#5a2a1a', '#c04a20'],
-      horizon: 'rgba(220,100,40,0.7)', stars: 0.1,
-      celestial: { size: 95, top: 55, right: 12, label: 'sun',
-        core: ['#ffeecc','#ff9030','#ee5010'],
-        shadow: '0 0 60px 25px rgba(255,160,60,0.6), 0 0 120px 50px rgba(240,80,20,0.3)' }
-    },
-    { name: 'dusk',
-      bg: ['#0a1020', '#1a2040', '#2a1a4a'],
-      horizon: 'rgba(80,40,100,0.7)', stars: 0.5,
-      celestial: { size: 78, top: 20, right: 16, label: 'moon',
-        core: ['#fff5ee','#f8e0b0','#f0c870'],
-        shadow: '0 0 35px 10px rgba(248,224,176,0.35), 0 0 70px 25px rgba(240,200,100,0.12)' }
-    },
-  ];
+// ── STARS ──
+const starsContainer = document.getElementById('stars');
+const starEls = [];
+for (let i = 0; i < 130; i++) {
+  const star = document.createElement('div');
+  star.className = 'star';
+  const size = Math.random() * 2.5 + 0.5;
+  star.style.cssText = `
+    width: ${size}px; height: ${size}px;
+    left: ${Math.random() * 100}%; top: ${Math.random() * 75}%;
+    --d: ${2 + Math.random() * 4}s;
+    animation-delay: ${Math.random() * 4}s;
+    transition: opacity 3s ease;
+  `;
+  starsContainer.appendChild(star);
+  starEls.push(star);
+}
 
-  const hero = document.querySelector('.hero');
-  const horizon = document.querySelector('.horizon');
-  const CYCLE = 60000;
+// ── SKY PHASES (60s cycle) ──
+const phases = [
+  { name: 'night',
+    bg: ['#0a1520', '#1a2e3b', '#0d1f2d'],
+    horizon: 'rgba(26,46,59,0.9)', stars: 1 },
+  { name: 'predawn',
+    bg: ['#0d1a3a', '#1a2a4e', '#2a1a3e'],
+    horizon: 'rgba(60,30,80,0.7)', stars: 0.8 },
+  { name: 'sunrise',
+    bg: ['#1a1a3a', '#3a1a2e', '#6b2d3e'],
+    horizon: 'rgba(200,80,60,0.6)', stars: 0.3 },
+  { name: 'golden',
+    bg: ['#1a2a4a', '#4a2a1a', '#c05a20'],
+    horizon: 'rgba(240,140,40,0.7)', stars: 0.05 },
+  { name: 'day',
+    bg: ['#0a3a6a', '#1a5a8a', '#2a7aaa'],
+    horizon: 'rgba(80,160,200,0.5)', stars: 0 },
+  { name: 'afternoon',
+    bg: ['#0a2a5a', '#1a4a7a', '#3a8aaa'],
+    horizon: 'rgba(60,140,180,0.5)', stars: 0 },
+  { name: 'sunset',
+    bg: ['#1a1a3a', '#5a2a1a', '#c04a20'],
+    horizon: 'rgba(220,100,40,0.7)', stars: 0.1 },
+  { name: 'dusk',
+    bg: ['#0a1020', '#1a2040', '#2a1a4a'],
+    horizon: 'rgba(80,40,100,0.7)', stars: 0.5 },
+];
 
-  function lerp(a, b, t) { return a + (b - a) * t; }
-  function hexToRgb(hex) {
-    hex = hex.replace('#','');
-    return [parseInt(hex.slice(0,2),16), parseInt(hex.slice(2,4),16), parseInt(hex.slice(4,6),16)];
-  }
-  function lerpRgb(a, b, t) {
-    return [Math.round(lerp(a[0],b[0],t)), Math.round(lerp(a[1],b[1],t)), Math.round(lerp(a[2],b[2],t))];
-  }
-  function rgbStr(c) { return `rgb(${c[0]},${c[1]},${c[2]})`; }
-  function parseRgba(str) {
-    const m = str.match(/[\d.]+/g).map(Number);
-    return m.length === 3 ? [...m, 1] : m;
-  }
-  function lerpRgba(a, b, t) {
-    return [lerp(a[0],b[0],t), lerp(a[1],b[1],t), lerp(a[2],b[2],t), lerp(a[3],b[3],t)];
-  }
-  function rgbaStr(c) { return `rgba(${Math.round(c[0])},${Math.round(c[1])},${Math.round(c[2])},${c[3].toFixed(3)})`; }
+const hero = document.querySelector('.hero');
+const horizon = document.querySelector('.horizon');
+const CYCLE = 60000;
 
-  // ── MAIN FRAME ──
-  function frame() {
-    const t = (Date.now() % CYCLE) / CYCLE;
-    const n = phases.length;
-    const phaseF = t * n;
-    const i = Math.floor(phaseF) % n;
-    const j = (i + 1) % n;
-    const blend = phaseF - Math.floor(phaseF);
-    const s = blend * blend * (3 - 2 * blend);
+function lerp(a, b, t) { return a + (b - a) * t; }
+function hexToRgb(hex) {
+  hex = hex.replace('#','');
+  return [parseInt(hex.slice(0,2),16), parseInt(hex.slice(2,4),16), parseInt(hex.slice(4,6),16)];
+}
+function lerpRgb(a, b, t) {
+  return [Math.round(lerp(a[0],b[0],t)), Math.round(lerp(a[1],b[1],t)), Math.round(lerp(a[2],b[2],t))];
+}
+function rgbStr(c) { return `rgb(${c[0]},${c[1]},${c[2]})`; }
+function parseRgba(str) {
+  const m = str.match(/[\d.]+/g).map(Number);
+  return m.length === 3 ? [...m, 1] : m;
+}
+function lerpRgba(a, b, t) {
+  return [lerp(a[0],b[0],t), lerp(a[1],b[1],t), lerp(a[2],b[2],t), lerp(a[3],b[3],t)];
+}
+function rgbaStr(c) { return `rgba(${Math.round(c[0])},${Math.round(c[1])},${Math.round(c[2])},${c[3].toFixed(3)})`; }
 
-    const A = phases[i], B = phases[j];
+function frame() {
+  const t = (Date.now() % CYCLE) / CYCLE;
+  const n = phases.length;
+  const phaseF = t * n;
+  const i = Math.floor(phaseF) % n;
+  const j = (i + 1) % n;
+  const blend = phaseF - Math.floor(phaseF);
+  const s = blend * blend * (3 - 2 * blend);
+  const A = phases[i], B = phases[j];
 
-    // ── Sky gradient
-    const bgColors = [0,1,2].map(k =>
-      rgbStr(lerpRgb(hexToRgb(A.bg[k]), hexToRgb(B.bg[k]), s))
-    );
-    hero.style.background = `linear-gradient(180deg, ${bgColors[0]} 0%, ${bgColors[1]} 50%, ${bgColors[2]} 100%)`;
+  const bgColors = [0,1,2].map(k =>
+    rgbStr(lerpRgb(hexToRgb(A.bg[k]), hexToRgb(B.bg[k]), s))
+  );
+  hero.style.background = `linear-gradient(180deg, ${bgColors[0]} 0%, ${bgColors[1]} 50%, ${bgColors[2]} 100%)`;
 
-    // ── Horizon
-    const hc = lerpRgba(parseRgba(A.horizon), parseRgba(B.horizon), s);
-    horizon.style.background = `linear-gradient(to top, ${rgbaStr(hc)}, transparent)`;
+  const hc = lerpRgba(parseRgba(A.horizon), parseRgba(B.horizon), s);
+  horizon.style.background = `linear-gradient(to top, ${rgbaStr(hc)}, transparent)`;
 
-    // ── Stars
-    const starOpacity = lerp(A.stars, B.stars, s);
-    if (Math.abs(starOpacity - (frame._lastStarOp || -1)) > 0.008) {
-      starEls.forEach(st => { st.style.opacity = starOpacity; });
-      frame._lastStarOp = starOpacity;
-    }
-
-    requestAnimationFrame(frame);
+  const starOpacity = lerp(A.stars, B.stars, s);
+  if (Math.abs(starOpacity - (frame._lastStarOp || -1)) > 0.008) {
+    starEls.forEach(st => { st.style.opacity = starOpacity; });
+    frame._lastStarOp = starOpacity;
   }
 
   requestAnimationFrame(frame);
+}
 
-  // ── SPARKLES ──
-  const sparkleShapes = ['✦', '★', '✿', '·', '✧', '◆', '✺', '⬟'];
-  const sparkleColors = [
-    '#f0d890','#c9a882','#7fa8b8','#ffffff','#ffd6a5','#d4a8e0','#a8d8c8','#ffb3c6',
-    '#b8c4d4','#c4b8d0','#8b4a2e','#7a8c6e'
-  ];
+requestAnimationFrame(frame);
 
-  document.addEventListener('mousemove', (e) => {
-    if (Math.random() > 0.35) return;
-    const el = document.createElement('div');
-    el.className = 'sparkle';
-    const size = 8 + Math.random() * 16;
-    const life = 0.5 + Math.random() * 0.8;
-    const color = sparkleColors[Math.floor(Math.random() * sparkleColors.length)];
-    const shape = sparkleShapes[Math.floor(Math.random() * sparkleShapes.length)];
-    const offsetX = (Math.random() - 0.5) * 24;
-    const offsetY = (Math.random() - 0.5) * 24;
+// ── SPARKLES ──
+const sparkleShapes = ['✦', '★', '✿', '·', '✧', '◆', '✺', '⬟'];
+const sparkleColors = [
+  '#f0d890','#c9a882','#7fa8b8','#ffffff','#ffd6a5','#d4a8e0','#a8d8c8','#ffb3c6',
+  '#b8c4d4','#c4b8d0','#8b4a2e','#7a8c6e'
+];
 
-    el.style.cssText = `
-      left: ${e.clientX + offsetX}px;
-      top: ${e.clientY + offsetY}px;
-      width: ${size}px; height: ${size}px;
-      font-size: ${size * 0.9}px;
-      color: ${color};
-      line-height: 1;
-      text-align: center;
-      background: none;
-      border-radius: 0;
-      --life: ${life}s;
-    `;
-    el.textContent = shape;
-    document.body.appendChild(el);
-    setTimeout(() => el.remove(), life * 1000);
+document.addEventListener('mousemove', (e) => {
+  if (Math.random() > 0.35) return;
+  const el = document.createElement('div');
+  el.className = 'sparkle';
+  const size = 8 + Math.random() * 16;
+  const life = 0.5 + Math.random() * 0.8;
+  const color = sparkleColors[Math.floor(Math.random() * sparkleColors.length)];
+  const shape = sparkleShapes[Math.floor(Math.random() * sparkleShapes.length)];
+  const offsetX = (Math.random() - 0.5) * 24;
+  const offsetY = (Math.random() - 0.5) * 24;
+  el.style.cssText = `
+    left: ${e.clientX + offsetX}px;
+    top: ${e.clientY + offsetY}px;
+    width: ${size}px; height: ${size}px;
+    font-size: ${size * 0.9}px;
+    color: ${color};
+    line-height: 1;
+    text-align: center;
+    background: none;
+    border-radius: 0;
+    --life: ${life}s;
+  `;
+  el.textContent = shape;
+  document.body.appendChild(el);
+  setTimeout(() => el.remove(), life * 1000);
+});
+
+// ── SCROLL ANIMATIONS ──
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) entry.target.classList.add('visible');
   });
+}, { threshold: 0.15 });
 
-  // ── SCROLL ANIMATIONS ──
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) entry.target.classList.add('visible');
-    });
-  }, { threshold: 0.15 });
+document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
 
-  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
-
-   // ── DROPDOWN SPARKLES ──
-  document.querySelectorAll('details > summary').forEach(summary => {
-    summary.addEventListener('click', (e) => {
-      for (let i = 0; i < 12; i++) {
-        const el = document.createElement('div');
-        el.className = 'sparkle';
-        const size = 8 + Math.random() * 16;
-        const life = 0.5 + Math.random() * 4;
-        const color = sparkleColors[Math.floor(Math.random() * sparkleColors.length)];
-        const shape = sparkleShapes[Math.floor(Math.random() * sparkleShapes.length)];
-        const angle = (i / 12) * 360;
-        const dist = 20 + Math.random() * 60;
-        const dx = Math.cos(angle * Math.PI / 180) * dist;
-        const dy = Math.sin(angle * Math.PI / 180) * dist;
-
-        el.style.cssText = `
-          left: ${e.clientX + dx}px;
-          top: ${e.clientY + dy}px;
-          width: ${size}px; height: ${size}px;
-          font-size: ${size * 0.9}px;
-          color: ${color};
-          line-height: 1;
-          text-align: center;
-          background: none;
-          border-radius: 0;
-          --life: ${life}s;
-        `;
-        el.textContent = shape;
-        document.body.appendChild(el);
-        setTimeout(() => el.remove(), life * 1000);
-      }
-    });
+// ── DROPDOWN SPARKLES ──
+document.querySelectorAll('details > summary').forEach(summary => {
+  summary.addEventListener('click', (e) => {
+    for (let i = 0; i < 12; i++) {
+      const el = document.createElement('div');
+      el.className = 'sparkle';
+      const size = 8 + Math.random() * 16;
+      const life = 0.5 + Math.random() * 4;
+      const color = sparkleColors[Math.floor(Math.random() * sparkleColors.length)];
+      const shape = sparkleShapes[Math.floor(Math.random() * sparkleShapes.length)];
+      const angle = (i / 12) * 360;
+      const dist = 20 + Math.random() * 60;
+      const dx = Math.cos(angle * Math.PI / 180) * dist;
+      const dy = Math.sin(angle * Math.PI / 180) * dist;
+      el.style.cssText = `
+        left: ${e.clientX + dx}px;
+        top: ${e.clientY + dy}px;
+        width: ${size}px; height: ${size}px;
+        font-size: ${size * 0.9}px;
+        color: ${color};
+        line-height: 1;
+        text-align: center;
+        background: none;
+        border-radius: 0;
+        --life: ${life}s;
+      `;
+      el.textContent = shape;
+      document.body.appendChild(el);
+      setTimeout(() => el.remove(), life * 1000);
+    }
   });
-  // ── SHOOTING STARS ──
+});
+
+// ── SHOOTING STARS ──
 function shootingStar() {
   const el = document.createElement('div');
   const startX = Math.random() * 80;
