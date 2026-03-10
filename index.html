@@ -778,7 +778,7 @@
 
 <script>
 // ── ENTRY SCREEN ──
-const guests = ['aimee','cole','abby','vivi','rory','basile','lilja','megan'];
+const guests = ['aimee','cole','abby','vivi','rory','basile','lilja','megan','nathan'];
 const nameInput = document.getElementById('name-input');
 const entryScreen = document.getElementById('entry-screen');
 const entryError = document.getElementById('entry-error');
@@ -981,34 +981,35 @@ document.querySelectorAll('details > summary').forEach(summary => {
 });
 
 // ── SHOOTING STARS ──
+const styleEl = document.createElement('style');
+styleEl.textContent = `
+  @keyframes shootAcross {
+    0%   { opacity: 0; transform: rotate(35deg) translateX(0); }
+    10%  { opacity: 1; }
+    100% { opacity: 0; transform: rotate(35deg) translateX(300px); }
+  }
+`;
+document.head.appendChild(styleEl);
+
 function shootingStar() {
   const el = document.createElement('div');
-  const startX = Math.random() * 80;
+  const startX = Math.random() * 60;
   const startY = Math.random() * 40;
   el.style.cssText = `
     position: fixed;
     left: ${startX}%;
     top: ${startY}%;
-    width: 120px;
+    width: 140px;
     height: 1px;
-    background: linear-gradient(90deg, rgba(255,255,255,0.8), transparent);
-    transform: rotate(${25 + Math.random() * 20}deg);
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.9), transparent);
+    transform: rotate(35deg) translateX(0);
     pointer-events: none;
     z-index: 9998;
-    animation: shootAcross 0.8s ease-out forwards;
+    animation: shootAcross 0.9s ease-in forwards;
   `;
   document.body.appendChild(el);
-  setTimeout(() => el.remove(), 900);
+  setTimeout(() => el.remove(), 1000);
 }
-
-const styleEl = document.createElement('style');
-styleEl.textContent = `
-  @keyframes shootAcross {
-    0%   { opacity: 1; transform: rotate(35deg) translateX(0); }
-    100% { opacity: 0; transform: rotate(35deg) translateX(200px); }
-  }
-`;
-document.head.appendChild(styleEl);
 
 setInterval(shootingStar, 4000);
 </script>
