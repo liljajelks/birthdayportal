@@ -986,6 +986,37 @@
       }
     });
   });
+  // ── SHOOTING STARS ──
+function shootingStar() {
+  const el = document.createElement('div');
+  const startX = Math.random() * 80;
+  const startY = Math.random() * 40;
+  el.style.cssText = `
+    position: fixed;
+    left: ${startX}%;
+    top: ${startY}%;
+    width: 120px;
+    height: 1px;
+    background: linear-gradient(90deg, rgba(255,255,255,0.8), transparent);
+    transform: rotate(${25 + Math.random() * 20}deg);
+    pointer-events: none;
+    z-index: 9998;
+    animation: shootAcross 0.8s ease-out forwards;
+  `;
+  document.body.appendChild(el);
+  setTimeout(() => el.remove(), 900);
+}
+
+const styleEl = document.createElement('style');
+styleEl.textContent = `
+  @keyframes shootAcross {
+    0%   { opacity: 1; transform: rotate(35deg) translateX(0); }
+    100% { opacity: 0; transform: rotate(35deg) translateX(200px); }
+  }
+`;
+document.head.appendChild(styleEl);
+
+setInterval(shootingStar, 4000);
 </script>
 
 </body>
