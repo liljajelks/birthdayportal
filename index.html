@@ -571,17 +571,21 @@
   0%   { opacity: 0.03; }
   100% { opacity: 0.12; }
 }
-  details > summary::before {
+ details > summary::before {
   content: 'press me';
   position: absolute;
   right: 0.2rem;
   top: calc(50% + 22px);
   font-family: 'Space Mono', monospace;
-  font-size: 0.8rem;
-  letter-spacing: 0.20em;
+  font-size: 0.5rem;
+  letter-spacing: 0.15em;
   color: var(--lavender);
   opacity: 0.7;
   text-transform: lowercase;
+}
+
+details[open] > summary::before {
+  display: none;
 }
 
 details[open] > summary::before {
