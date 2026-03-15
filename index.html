@@ -1174,7 +1174,10 @@ function dismissEntry(displayName, instant) {
   setTimeout(() => {
     entryScreen.style.transition = 'opacity 1.5s ease';
     entryScreen.style.opacity = '0';
-    setTimeout(() => entryScreen.remove(), 1500);
+    setTimeout(() => {
+      entryScreen.remove();
+      if (typeof buildRsvpGrid === 'function') buildRsvpGrid();
+    }, 1500);
   }, delay);
 }
 
@@ -1937,9 +1940,6 @@ function openRsvpPicker(name) {
 }
 
 buildRsvpGrid();
-
-// Rebuild grid after login resolves
-setTimeout(buildRsvpGrid, 2000);
 const jellyfishStyle = document.createElement('style');
 jellyfishStyle.textContent = `
   @keyframes jellyfishRise {
