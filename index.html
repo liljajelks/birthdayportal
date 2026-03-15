@@ -479,6 +479,42 @@
     margin-bottom: 1rem;
   }
 
+  .footer-glitter {
+    position: absolute;
+    pointer-events: none;
+    font-size: 0.6rem;
+    animation: glitterFloat var(--gd, 2s) ease-in-out infinite var(--gdelay, 0s);
+  }
+
+  .footer-note {
+    margin-top: 2.5rem;
+    max-width: 520px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 2.5rem 2.2rem;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(201,168,130,0.35);
+    border-radius: 50px;
+    box-shadow: 0 0 40px rgba(201,168,130,0.18), 0 0 80px rgba(202,178,212,0.1);
+    animation: fadeInUp 0.7s ease forwards;
+  }
+
+  .footer-note-msg {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 1.2rem;
+    color: var(--fog);
+    line-height: 1.85;
+    margin-bottom: 1.2rem;
+  }
+
+  .footer-note-sig {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 1.1rem;
+    color: var(--blush);
+  }
+
   footer p {
     opacity: 0.6;
     font-family: 'Space Mono', monospace;
@@ -615,207 +651,87 @@
     to   { opacity: 1; transform: translateY(0); }
   }
 
-  /* ─── RSVP ─── */
+  /* ─── PERSONAL NOTE ─── */
   .rsvp-section {
-    background: linear-gradient(160deg, var(--deep) 50%, #1a1520 100%);
+    background: linear-gradient(180deg,
+      #eef6ff 0%,
+      #d8d0e8 12%,
+      #2a1a3e 35%,
+      #3a1a2e 60%,
+      #1a2e3b 100%
+    );
     padding: 6rem 2rem;
     position: relative;
+    overflow: hidden;
+    padding-top: 8rem;
+  }
+
+  .rsvp-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse at 20% 50%, rgba(242,134,39,0.12) 0%, transparent 60%),
+      radial-gradient(ellipse at 80% 30%, rgba(202,178,212,0.1) 0%, transparent 55%),
+      radial-gradient(ellipse at 50% 90%, rgba(127,168,184,0.08) 0%, transparent 50%);
+    pointer-events: none;
   }
 
   .rsvp-inner {
-    max-width: 900px;
+    max-width: 600px;
     margin: 0 auto;
-  }
-
-  .rsvp-section .section-label { color: var(--blush); }
-  .rsvp-section .section-title { color: var(--sand); text-align: center; margin-bottom: 0.5rem; }
-
-  .rsvp-subtext {
-    font-family: 'Cormorant Garamond', serif;
-    font-style: italic;
-    font-size: 1.1rem;
-    color: var(--fog);
     text-align: center;
-    margin-bottom: 3rem;
-    opacity: 0.7;
-  }
-
-  .rsvp-subtext strong { color: var(--blush); font-style: normal; }
-
-  .rsvp-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    gap: 1.2rem;
-    margin-bottom: 2.5rem;
-  }
-
-  .rsvp-card {
-    border-radius: 16px;
-    padding: 1.5rem 1rem;
-    text-align: center;
-    border: 1px solid rgba(255,255,255,0.08);
-    background: rgba(255,255,255,0.04);
-    transition: transform 0.25s ease, background 0.3s ease, border-color 0.3s ease;
     position: relative;
-    overflow: hidden;
+    z-index: 2;
   }
 
-  .rsvp-card.is-mine {
-    cursor: pointer;
-    border-color: rgba(201,168,130,0.3);
+  .rsvp-section .section-label {
+    color: var(--tide);
+    letter-spacing: 0.35em;
   }
 
-  .rsvp-card.is-mine:hover {
-    transform: translateY(-3px);
-    background: rgba(255,255,255,0.08);
-  }
-
-  .rsvp-card.status-yes {
-    background: rgba(119,171,60,0.12);
-    border-color: rgba(119,171,60,0.35);
-  }
-
-  .rsvp-card.status-no {
-    background: rgba(139,74,46,0.12);
-    border-color: rgba(139,74,46,0.3);
-    opacity: 0.7;
-  }
-
-  .rsvp-card.status-maybe {
-    background: rgba(202,178,212,0.1);
-    border-color: rgba(202,178,212,0.25);
-  }
-
-  .rsvp-name {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.1rem;
-    font-style: italic;
-    color: var(--sand);
-    margin-bottom: 0.6rem;
-  }
-
-  .rsvp-status-icon {
-    font-size: 1.4rem;
-    margin-bottom: 0.4rem;
-    display: block;
-  }
-
-  .rsvp-status-label {
-    font-family: 'Space Mono', monospace;
-    font-size: 0.52rem;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--stone);
-  }
-
-  .rsvp-card.status-yes .rsvp-status-label { color: #77ab3c; }
-  .rsvp-card.status-no .rsvp-status-label  { color: #c47a5a; }
-  .rsvp-card.status-maybe .rsvp-status-label { color: var(--lavender); }
-
-  .rsvp-mine-hint {
-    position: absolute;
-    top: 6px; right: 8px;
-    font-family: 'Space Mono', monospace;
-    font-size: 0.42rem;
-    letter-spacing: 0.1em;
-    color: var(--blush);
-    text-transform: uppercase;
-    opacity: 0.6;
-  }
-
-  .rsvp-note {
-    font-family: 'Space Mono', monospace;
-    font-size: 0.55rem;
-    letter-spacing: 0.12em;
-    color: var(--stone);
-    text-align: center;
-    opacity: 0.5;
-    text-transform: uppercase;
-  }
-
-  /* RSVP picker modal */
-  .rsvp-picker {
-    position: fixed;
-    inset: 0;
-    z-index: 9000;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: rgba(10,20,30,0.7);
-    backdrop-filter: blur(6px);
-    animation: fadeInUp 0.25s ease;
-  }
-
-  .rsvp-picker-box {
-    background: var(--deep);
-    border: 1px solid rgba(201,168,130,0.2);
+  .rsvp-note-box {
+    margin-top: 1rem;
+    padding: 2.8rem 2.2rem;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(242,134,39,0.2);
     border-radius: 20px;
-    padding: 2.5rem 2rem;
-    text-align: center;
-    max-width: 320px;
-    width: 90%;
+    box-shadow: 0 0 40px rgba(242,134,39,0.06), 0 0 80px rgba(202,178,212,0.04);
+    animation: fadeInUp 0.8s ease forwards;
+    position: relative;
   }
 
-  .rsvp-picker-title {
+  .rsvp-note-box::before {
+    content: '✦';
+    position: absolute;
+    top: -0.7rem;
+    left: 50%;
+    transform: translateX(-50%);
+    color: var(--poppy);
+    font-size: 0.9rem;
+    background: #2a1520;
+    padding: 0 0.5rem;
+    opacity: 0.8;
+  }
+
+  .rsvp-note-msg {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 1.3rem;
+    color: var(--fog);
+    line-height: 1.9;
+    margin-bottom: 1.5rem;
+  }
+
+  .rsvp-note-sig {
     font-family: 'Playfair Display', serif;
     font-style: italic;
-    font-size: 1.5rem;
-    color: var(--sand);
-    margin-bottom: 0.4rem;
+    font-size: 1.2rem;
+    color: var(--blush);
+    opacity: 0.9;
   }
 
-  .rsvp-picker-sub {
-    font-family: 'Cormorant Garamond', serif;
-    font-style: italic;
-    color: var(--fog);
-    font-size: 1rem;
-    margin-bottom: 2rem;
-    opacity: 0.7;
-  }
-
-  .rsvp-options {
-    display: flex;
-    flex-direction: column;
-    gap: 0.8rem;
-  }
-
-  .rsvp-option {
-    padding: 0.9rem 1.5rem;
-    border-radius: 12px;
-    border: 1px solid rgba(255,255,255,0.1);
-    background: rgba(255,255,255,0.05);
-    color: var(--sand);
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.15rem;
-    cursor: pointer;
-    transition: background 0.2s ease, border-color 0.2s ease, transform 0.15s ease;
-    display: flex;
-    align-items: center;
-    gap: 0.8rem;
-  }
-
-  .rsvp-option:hover { transform: translateY(-2px); }
-
-  .rsvp-option.opt-yes:hover  { background: rgba(119,171,60,0.2); border-color: rgba(119,171,60,0.4); }
-  .rsvp-option.opt-no:hover   { background: rgba(139,74,46,0.2);  border-color: rgba(139,74,46,0.4); }
-  .rsvp-option.opt-maybe:hover{ background: rgba(202,178,212,0.2);border-color: rgba(202,178,212,0.4); }
-
-  .rsvp-picker-cancel {
-    margin-top: 1.2rem;
-    font-family: 'Space Mono', monospace;
-    font-size: 0.58rem;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--stone);
-    cursor: pointer;
-    opacity: 0.6;
-    transition: opacity 0.2s;
-  }
-  .rsvp-picker-cancel:hover { opacity: 1; }
-
-  @media (max-width: 480px) {
-    .rsvp-grid { grid-template-columns: repeat(2, 1fr); }
-  }
+  .rsvp-btn, .rsvp-buttons, .rsvp-change { display: none; }
   .section-label.sage  { color: var(--sage); }
   .section-label.terra { color: var(--terracotta); }
 
@@ -993,7 +909,7 @@
       My parents have graciously offered their home for the weekend, and I cannot wait to welcome you through the door.
     </p>
     <div class="house-photo fade-up">
-      <img src="pebble-beach-house.png">
+      <img src="https://placehold.co/600x400">
       <p class="photo-caption">home base for the weekend</p>
     </div>
     <div class="location-grid">
@@ -1140,17 +1056,6 @@
   </div>
 </div>
 
-<!-- ─── RSVP ─── -->
-<div class="rsvp-section">
-  <div class="rsvp-inner">
-    <p class="section-label" style="text-align:center;">will you be there?</p>
-    <h2 class="section-title" style="text-align:center;">RSVP</h2>
-    <p class="rsvp-subtext">You're logged in as <strong id="rsvp-logged-in">—</strong>. Click your card to update your status.</p>
-    <div class="rsvp-grid" id="rsvp-grid"></div>
-    <p class="rsvp-note">✦ Your response saves to your device and is visible to you each time you visit</p>
-  </div>
-</div>
-
 <!-- ─── FOOTER ─── -->
 <footer>
   <p class="big-text">See you soon.</p>
@@ -1176,7 +1081,6 @@ function dismissEntry(displayName, instant) {
     entryScreen.style.opacity = '0';
     setTimeout(() => {
       entryScreen.remove();
-      if (typeof buildRsvpGrid === 'function') buildRsvpGrid();
     }, 1500);
   }, delay);
 }
@@ -1802,144 +1706,6 @@ document.getElementById('hero-date').addEventListener('click', () => {
 });
 
 // ── RSVP ──
-const rsvpGuests = ['rory','megan','vivi','abby','basile','lilja','aimee','cole','vlad','klau','dan','nathan'];
-
-// Aliases: map alternate login names to canonical RSVP name
-const rsvpAliases = { 'daniel': 'dan', 'nate': 'nathan' };
-
-function getCanonicalName(name) {
-  return rsvpAliases[name] || name;
-}
-const rsvpGrid = document.getElementById('rsvp-grid');
-const rsvpLoggedIn = document.getElementById('rsvp-logged-in');
-
-const rsvpMessages = {
-  'rory': "Yay! *secret handshake* I am so excited to see you... This is a spin off of the \"creative hackathon\" weekend I'd like to see happen! 🪄 Get your creative hat on!! 🧙",
-  'megan': "Hi sweet Meg 💕 I am so grateful for you and how much you show up for me. I can't wait to see you for this creative birthday weekend. I am already drooling for your handmade cake!! You bring magic no matter what...",
-  'vivi': "My sweet Vivi!! I am SO grateful you're making the trip to be part of this weekend. It means so much to me! 🥹🎂 See you soon!",
-  'abby': "My rover-baby!! You're my ride-or-die and I cannot imagine an intentional birthday weekend without you. I can't wait to see you (and talk about our next backpacking adventure).",
-  'basile': "Hi my handsome lover man, thank you for supporting me, always. I am so excited to enjoy a creative weekend with some of my best friends, and our mutual friends (thanks to you for introducing them to me, they've become very important to me). Can't wait for your DJ set 🤤❣️🪄",
-  'lilja': "Yas girl, let's get it!",
-  'aimee': "My soul SISTER! I cannot wait to see you!! We're going to show everyone how a (girls) weekend is done... should we give everyone facials??? 😉",
-  'cole': "Yayyy! I can't wait to see you!!! It's such a gift that you're able to join in on this weekend. Please be ready to bust out your dance moves... 😆💃",
-  'vlad': "Wow!! I cannot express how grateful I feel that you're able to join this weekend!! I can't wait to see you and enjoy a delightful, creative weekend together! 🪄✨",
-  'klau': "Yaaay!!! I can't wait to give you the hugest hug when you arrive!!! I am so grateful you're able to join! 🥹✨",
-  'dan': "My best friend! You're a key to this celebration!!! It wouldn't feel the same without you. I'm so glad you can join. Please bring your unique magic (juggling pins included)!",
-  'nathan': "Yay!! It's such a gift that you can join in on this weekend!!! I can't wait to see you and enjoy a weekend together. I'm so grateful to have you in my orbit, thanks to our mutual gravitational force (Basile).",
-};
-
-function getLoggedInGuest() {
-  try {
-    const s = localStorage.getItem('pb_guest');
-    if (!s) return null;
-    const { name, ts } = JSON.parse(s);
-    if (Date.now() - ts < 24 * 60 * 60 * 1000) return name;
-  } catch(e) {}
-  return null;
-}
-
-function getRsvpStatus(name) {
-  try {
-    const s = localStorage.getItem(`pb_rsvp_${name}`);
-    return s || 'pending';
-  } catch(e) { return 'pending'; }
-}
-
-function setRsvpStatus(name, status) {
-  localStorage.setItem(`pb_rsvp_${name}`, status);
-}
-
-function statusDisplay(status) {
-  if (status === 'yes')   return { icon: '✦', label: "I'll be there!", cls: 'status-yes' };
-  if (status === 'no')    return { icon: '✗', label: "Can't make it", cls: 'status-no' };
-  if (status === 'maybe') return { icon: '◌', label: 'Maybe!', cls: 'status-maybe' };
-  return { icon: '·', label: 'awaiting...', cls: '' };
-}
-
-function buildRsvpGrid() {
-  const rawMe = getLoggedInGuest();
-  const me = rawMe ? getCanonicalName(rawMe) : null;
-  rsvpLoggedIn.textContent = me ? me.charAt(0).toUpperCase() + me.slice(1) : 'not logged in';
-  rsvpGrid.innerHTML = '';
-
-  rsvpGuests.forEach(name => {
-    const status = getRsvpStatus(name);
-    const { icon, label, cls } = statusDisplay(status);
-    const isMine = name === me;
-    const display = name.charAt(0).toUpperCase() + name.slice(1);
-
-    const card = document.createElement('div');
-    card.className = `rsvp-card ${cls} ${isMine ? 'is-mine' : ''}`;
-    card.dataset.name = name;
-    card.innerHTML = `
-      ${isMine ? '<span class="rsvp-mine-hint">you</span>' : ''}
-      <div class="rsvp-name">${display}</div>
-      <span class="rsvp-status-icon">${icon}</span>
-      <div class="rsvp-status-label">${label}</div>
-    `;
-
-    if (isMine) {
-      card.addEventListener('click', () => openRsvpPicker(name));
-    }
-
-    rsvpGrid.appendChild(card);
-  });
-}
-
-function openRsvpPicker(name) {
-  const display = name.charAt(0).toUpperCase() + name.slice(1);
-  const picker = document.createElement('div');
-  picker.className = 'rsvp-picker';
-  picker.innerHTML = `
-    <div class="rsvp-picker-box">
-      <div class="rsvp-picker-title">${display},</div>
-      <div class="rsvp-picker-sub">will you be joining us?</div>
-      <div class="rsvp-options">
-        <button class="rsvp-option opt-yes" data-val="yes">🎉 &nbsp; Yes, I'll be there!</button>
-        <button class="rsvp-option opt-maybe" data-val="maybe">🌊 &nbsp; Maybe — fingers crossed</button>
-        <button class="rsvp-option opt-no" data-val="no">💌 &nbsp; Can't make it this time</button>
-      </div>
-      <div class="rsvp-picker-cancel">cancel</div>
-    </div>
-  `;
-
-  picker.querySelectorAll('.rsvp-option').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const val = btn.dataset.val;
-      setRsvpStatus(name, val);
-      picker.remove();
-
-      if (val === 'yes' && rsvpMessages[name]) {
-        // Show personal message
-        const msgOverlay = document.createElement('div');
-        msgOverlay.className = 'rsvp-picker';
-        msgOverlay.innerHTML = `
-          <div class="rsvp-picker-box" style="max-width:400px;">
-            <div style="font-size:1.8rem;margin-bottom:1rem;">🎉</div>
-            <div class="rsvp-picker-title" style="margin-bottom:1.2rem;">A note for you, ${display}</div>
-            <div style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.2rem;color:var(--fog);line-height:1.7;margin-bottom:1.5rem;">${rsvpMessages[name]}</div>
-            <div style="font-family:'Playfair Display',serif;font-style:italic;font-size:1.1rem;color:var(--blush);margin-bottom:1.8rem;">Hugs, Lil 🌸</div>
-            <div class="rsvp-picker-cancel" style="opacity:1;color:var(--blush);font-size:0.6rem;" id="msg-close">close ✦</div>
-          </div>
-        `;
-        document.body.appendChild(msgOverlay);
-        launchConfetti(window.innerWidth / 2, window.innerHeight / 2);
-        msgOverlay.querySelector('#msg-close').addEventListener('click', () => msgOverlay.remove());
-        msgOverlay.addEventListener('click', e => { if (e.target === msgOverlay) msgOverlay.remove(); });
-      } else {
-        launchConfetti(window.innerWidth / 2, window.innerHeight / 2);
-      }
-
-      buildRsvpGrid();
-    });
-  });
-
-  picker.querySelector('.rsvp-picker-cancel').addEventListener('click', () => picker.remove());
-  picker.addEventListener('click', e => { if (e.target === picker) picker.remove(); });
-  document.body.appendChild(picker);
-}
-
-buildRsvpGrid();
 const jellyfishStyle = document.createElement('style');
 jellyfishStyle.textContent = `
   @keyframes jellyfishRise {
