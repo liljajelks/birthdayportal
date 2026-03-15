@@ -814,6 +814,52 @@
     text-shadow: 0 0 20px rgba(201,168,130,0.4);
   }
 
+  .packing-list {
+    list-style: none;
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+    max-width: 620px;
+  }
+
+  .packing-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.1rem;
+    padding: 1rem 1.2rem;
+    background: rgba(127,168,184,0.05);
+    border: 1px solid rgba(127,168,184,0.12);
+    border-radius: 16px;
+    transition: background 0.2s ease;
+  }
+
+  .packing-item:hover { background: rgba(127,168,184,0.1); }
+
+  .packing-icon {
+    font-size: 1.4rem;
+    flex-shrink: 0;
+    margin-top: 0.1rem;
+  }
+
+  .packing-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 1.15rem;
+    color: var(--ocean);
+    display: block;
+    margin-bottom: 0.2rem;
+  }
+
+  .packing-sub {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.58rem;
+    letter-spacing: 0.08em;
+    color: var(--stone);
+    display: block;
+    line-height: 1.6;
+  }
+
   .twilight-accent {
     border-left: 2px solid var(--twilight);
     padding-left: 1.5rem;
@@ -898,6 +944,62 @@
 
 <div class="divider"></div>
 
+<!-- ─── WEATHER ─── -->
+<section class="fade-up">
+  <details id="weather-details">
+    <summary>
+      <p class="section-label">Before you pack</p>
+      <h2 class="section-title">Packing list<br><em>& weather forecast</em></h2>
+    </summary>
+
+    <ul class="packing-list">
+      <li class="packing-item">
+        <span class="packing-icon">🛌</span>
+        <div>
+          <span class="packing-title">Pack for a comfy sleepover</span>
+          <span class="packing-sub">comfy lounge wear, any essentials for yourself — contacts, meds, special blankey</span>
+        </div>
+      </li>
+      <li class="packing-item">
+        <span class="packing-icon">🪩</span>
+        <div>
+          <span class="packing-title">Pack for a dance party</span>
+          <span class="packing-sub">fun accessories, extra flare — dress to feel good</span>
+        </div>
+      </li>
+      <li class="packing-item">
+        <span class="packing-icon">🩱</span>
+        <div>
+          <span class="packing-title">Bathing suit</span>
+          <span class="packing-sub">polar bear plunge awaits... or just sunbathing, no pressure</span>
+        </div>
+      </li>
+      <li class="packing-item">
+        <span class="packing-icon">🥾</span>
+        <div>
+          <span class="packing-title">Comfortable shoes & clothes</span>
+          <span class="packing-sub">for hiking and exploring if we do!</span>
+        </div>
+      </li>
+      <li class="packing-item">
+        <span class="packing-icon">🎪</span>
+        <div>
+          <span class="packing-title">Fun games, flow toys, instruments, tricks & surprises</span>
+          <span class="packing-sub">bring whatever makes you feel alive</span>
+        </div>
+      </li>
+    </ul>
+
+    <div id="weather-content" style="margin-top:2.5rem;">
+      <p style="font-family:'Space Mono',monospace;font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--stone);margin-bottom:1rem;opacity:0.7;">April forecast · Pebble Beach</p>
+      <div id="weather-loading" style="font-family:'Space Mono',monospace;font-size:0.7rem;letter-spacing:0.2em;color:var(--stone);text-transform:uppercase;padding:1rem 0;">fetching the forecast...</div>
+      <div id="weather-grid" style="display:none;"></div>
+    </div>
+  </details>
+</section>
+
+<div class="divider"></div>
+
 <!-- ─── LOCATION ─── -->
 <section class="fade-up">
   <details>
@@ -924,26 +1026,9 @@
     </div>
   </details>
 </section>
-
-<div class="divider"></div>
-
-<!-- ─── WEATHER ─── -->
-<section class="fade-up">
-  <details id="weather-details">
-    <summary>
-      <p class="section-label">Before you pack</p>
-      <h2 class="section-title">Pebble Beach<br><em>weather forecast</em></h2>
-    </summary>
-    <div id="weather-content" style="margin-top:2rem;">
-      <div id="weather-loading" style="font-family:'Space Mono',monospace;font-size:0.7rem;letter-spacing:0.2em;color:var(--stone);text-transform:uppercase;padding:1rem 0;">fetching the forecast...</div>
-      <div id="weather-grid" style="display:none;"></div>
-    </div>
-  </details>
-</section>
 <div class="schedule-section">
   <div class="schedule-inner">
     <p class="section-label" style="text-align:center">The weekend</p>
-    <h2 class="section-title" style="text-align:center; max-width:600px; margin: 0 auto 0.5rem;">Three days,<br><em>no agenda — just a few anchors</em></h2>
 
     <div class="days-grid">
 
@@ -960,7 +1045,7 @@
             </div>
           </li>
           <li class="day-event">
-            <span class="event-time">7:30pm</span>
+            <span class="event-time">7:00pm</span>
             <div>
               <span class="event-text">Dinner together</span>
             </div>
@@ -968,13 +1053,14 @@
           <li class="day-event">
             <span class="event-dot"></span>
             <div>
-              <span class="event-text">Something interesting after dinner... you'll see</span>
+              <span class="event-text">Beach bonfire 🔥</span>
+              <span class="event-sub">Maybe a burning of an effigy situation? TBD</span>
             </div>
           </li>
           <li class="day-event">
             <span class="event-dot"></span>
             <div>
-              <span class="event-text">Games 'n spa 🎲</span>
+              <span class="event-text">Chill games 'n spa 🎲</span>
               <span class="event-sub">Bring your favorite game, or make one up for us! Face masks anyone??</span>
             </div>
           </li>
@@ -1009,14 +1095,7 @@
           <li class="day-event">
             <span class="event-dot"></span>
             <div>
-              <span class="event-text">Beach bonfire 🔥</span>
-              <span class="event-sub">Maybe a burning of an effigy situation? TBD</span>
-            </div>
-          </li>
-          <li class="day-event">
-            <span class="event-dot"></span>
-            <div>
-              <span class="event-text">After dark ✨</span>
+              <span class="event-text">After dark shenanigans ✨</span>
               <span class="event-sub">DJ set — Bass Eel · dancing · mind-altering magic</span>
             </div>
           </li>
@@ -1064,7 +1143,7 @@
 
 <script>
 // ── ENTRY SCREEN ──
-const guests = ['nate','nathan','rory','megan','basile','abby','vivi','lilja','vlad','klau','daniel','dan','aimee','cole'];
+const guests = ['nate','nathan','rory','megan','basile','abby','vivi','lilja','vlad','klau'];
 const nameInput = document.getElementById('name-input');
 const entryScreen = document.getElementById('entry-screen');
 const entryError = document.getElementById('entry-error');
